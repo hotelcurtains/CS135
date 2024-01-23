@@ -113,3 +113,85 @@
     3. return the result
 - a list of data interprets as itself
   - remember to use (quote 1 2 3) or `(1 2 3)
+
+# Defining new functions
+`(define (function-name param1 param2 ...) expr)`
+we will implement
+- arithmetic average `(x+y)/2`
+- geometric average `sqrt(x*y)`
+- harmonic average `2/((1/x)+(1/y))`
+```scheme
+(define (a-avg x y) (* 1/2 (+ x y)))
+(define (g-avg x y) (sqrt (* x y)))
+(define (h-avg x y) (/ 2 (+ (/ 1 x) (/ 1 y))))
+```
+```scheme
+> (a-avg 20 30)
+25
+> (g-avg 20 30)
+24.49489742783178
+> (h-avg 20 30)
+24
+```
+
+# Equality operators
+```scheme
+(= n m) ; checks whether n and m are equal in value
+(eq? n m) ; identity operator - checks if n and m point to the same place in memory
+          ; works for literals
+(eqv? n m) ; checks if n and m are numbers --
+           ; if so it returns (= n m), otherwise returns (eq? n m)
+(equal? n m) ; checks if n and m form structures with the same components -- 
+             ; i.e. are lists whose corresponding elements are equal.
+```
+```scheme
+> (define x 2)
+> (define y 2)
+> (eq? x y)
+#t
+```
+you can do this because 2 is stored in the same memory location no matter what variable is pointing to it
+
+```scheme
+> (define x `(2 3))
+> x
+(2 3)
+> (define y `(2 3))
+> y
+(2 3)
+> (eq? x y)
+#f
+> (equal? x y)
+#t
+```
+the lists point to different memory locations, but their elements are equal.
+
+# Logic
+- Logic is a study of arguments
+- Arguments are a sequence of statements whose purpose is to establish the truth of an assertion.
+- those statements are *premises*, except for the last one which is a *conclusion*
+- a proposition will be true or false always
+  - "It is raining" is a valid proposition
+  - "What time is it?" is obviously not a proposition
+
+## Compound Propositions
+for valid propositions p and q, these are valid propositions
+- ¬p (~p)
+  - not p
+- p ∨ q
+  - p or q
+  - disjunction
+- p ∧ q
+  - p and q
+  - conjunction
+- p → q (p => q)
+  - p then q
+  - implication / conditional
+  - p = hypothesis, q = consequence
+  - uncommon versions:
+    - p only if q = p → q
+    - p unless q = ¬q → p
+  - p → q = ¬q ∨ p
+- p ↔ q (p ⇔ q)
+  - p iff q
+  - biconditional / equivalence
