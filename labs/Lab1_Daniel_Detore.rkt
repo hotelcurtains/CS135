@@ -53,7 +53,6 @@
       (and p (not q) (not r))
       (and (not p) q (not r))
       (and (not p) (not q) r)
-      (and p q r)
     )
   )
 
@@ -67,4 +66,3 @@
 ;; Created January 2018 by Samuel Kraus and Edward Minnix
 ;; Updated January 2020 by Jared Pincus
 ;; Updated January 2022 by Jacek Ossowski
-
