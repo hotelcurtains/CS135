@@ -199,7 +199,7 @@ for valid propositions p and q, these are valid propositions
 
 # Conditionals
 ```scheme
-(if (condition) "runs if true" " runs if false")
+(if (condition) "runs if true" "runs if false")
 (cond [(condition1) "true"] [(condition2) "true"] [else "runs for else"])
 ```
 the basics:
