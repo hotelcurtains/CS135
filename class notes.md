@@ -190,8 +190,45 @@ for valid propositions p and q, these are valid propositions
   - p = hypothesis, q = consequence
   - uncommon versions:
     - p only if q = p → q
-    - p unless q = ¬q → p
+    - p unless q = ¬q → p = p ∨ q
   - p → q = ¬q ∨ p
 - p ↔ q (p ⇔ q)
   - p iff q
   - biconditional / equivalence
+
+
+# Conditionals
+```scheme
+(if (condition) "runs if true" " runs if false")
+(cond [(condition1) "true"] [(condition2) "true"] [else "runs for else"])
+```
+the basics:
+```scheme
+> (if (< 1 2) "less" "more")
+"less"
+> (if (< 3 2) "less" "more")
+"more"
+> (define x 6)
+> (cond [(eq? x 1) "its 1"] [(eq? x 2) "its 2"] [else "something else"])
+"something else"
+> (define x 1)
+> (cond [(eq? x 1) "its 1"] [(eq? x 2) "its 2"] [else "something else"])
+"its 1"
+> (define x 2)
+> (cond [(eq? x 1) "its 1"] [(eq? x 2) "its 2"] [else "something else"])
+"its 2"
+```
+
+
+let's try to implement a function like python's `filter()` recursively:
+```scheme
+(define (apply-pred list pred)
+  (cond 
+    [(null? list)
+      `()]
+    [(pred (car list))
+      (cons (car list) (apply-pred (cdr list) pred))]
+    [else
+      (apply-pred (cdr list) pred)]))
+```
+- we're using `cond` because there are 3 possible branches -- the list is empty, the current item is caught by the filter, and the current item is not caught by the filter.
