@@ -173,6 +173,8 @@ the lists point to different memory locations, but their elements are equal.
 - a proposition will be true or false always
   - "It is raining" is a valid proposition
   - "What time is it?" is obviously not a proposition
+- two boolean formulas are considered equivalent if they have the same formulas
+  - implies that their truth tables are the same
 
 ## Compound Propositions
 for valid propositions p and q, these are valid propositions
@@ -232,3 +234,8 @@ let's try to implement a function like python's `filter()` recursively:
       (apply-pred (cdr list) pred)]))
 ```
 - we're using `cond` because there are 3 possible branches -- the list is empty, the current item is caught by the filter, and the current item is not caught by the filter.
+
+# Boolean Math
+![Table 6 logical equivalences](<logical equivalences.png>)
+- for some laws, multiplication = AND and addition = OR
+- 
