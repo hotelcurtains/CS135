@@ -237,5 +237,13 @@ let's try to implement a function like python's `filter()` recursively:
 
 # Boolean Math
 ![Table 6 logical equivalences](<logical equivalences.png>)
+![conditional identities](image-5.png)
+![various versions of conditional statements](IMG_3921.JPG)
 - for some laws, multiplication = AND and addition = OR
-- 
+- p implies q ≡ (not p) or q
+- not(p implies q) ≡ p and (not q)
+- the contrapositive of a statement is always equivalent to its original statement
+  - (p -> q) is logically equivalent to (not q -> not p)
+- ¬(p → q) ≡ p ∧ ¬q
+- a *recognizer expression* is only true for one single input
+- we are doing minterm expansion i am not taking these notes again

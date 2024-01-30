@@ -65,6 +65,3 @@ here's a table for the converse, contrapositive, and inverse of a conditional st
   - you can prove this by making a logic table and putting the things you want to prove equivalent next to each other
 
 
-### DeMorgan's law
-- ¬(p ∨ q) ≡ (¬p ∧ ¬q)
-- ¬(p ∧ q) ≡ (¬p ∨ ¬q)
