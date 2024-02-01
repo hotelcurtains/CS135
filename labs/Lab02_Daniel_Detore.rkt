@@ -149,7 +149,7 @@
 
 ;; Returns the 'state field
 (define (state student)
-  (caadar (cddddr student))
+  (car (cdadar (cddddr student)))
 )
 
 
