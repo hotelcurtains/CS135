@@ -243,7 +243,82 @@ let's try to implement a function like python's `filter()` recursively:
 - p implies q ≡ (not p) or q
 - not(p implies q) ≡ p and (not q)
 - the contrapositive of a statement is always equivalent to its original statement
-  - (p -> q) is logically equivalent to (not q -> not p)
+  - (p → q) is logically equivalent to (not q → not p)
 - ¬(p → q) ≡ p ∧ ¬q
 - a *recognizer expression* is only true for one single input
-- we are doing minterm expansion i am not taking these notes again
+  - we are doing minterm expansion i am not taking these notes again
+- CNF - conjunctive normal form
+  - a lot of disjunctions connected by ands
+- DNF - disjunctive normal form
+  - a lot of conjucntions connected by ors
+
+
+# Predicate / First Order Logic
+## symbols
+- ∈ = belongs to / is an element of
+- ℤ = set of integers
+  - ℤ⁺ = all positive integers (excl. 0)
+- ℝ = set of all real numbers
+- ℚ = set of all rational integers
+  - recall scheme handles fractions well
+- ∀ = for all - universal quantifier
+- ∃ = there exists - existential quantifier
+- 3 ∈ ℤ
+- 3.2 = 16/5 ∉ ℤ
+
+## Predicate Logic
+- recall a predicate is a ststement that only returns true or false
+- a predicate functon contains a finite number of variables and indicates whether a relationship is held by the objects represented b ythose variables.
+  - when you fill in the variables with objects it becomes a proposition
+  - a predicate has a variable and a domain and as such has no inherent truth value vs.
+  - a proposition does not contain any variables and as such has a set truth value
+- the domain is the set of all variables for which it is defined, i.e. all that make sense
+- ex
+  - Let D = {1,2,3,4,5} and consider ∀x (x² >= x)
+  - Is this statement true?
+  - yes. do the math and work through the domain.
+- Existential Quantifier ex.
+  - Let P(x) = "x² -4 > x" be a predicate with a domain consisting of all real numbers
+  - ∃x P(x) (there exists an x for P(x) that makes P(x) true)
+  - True! (10, per se)
+- ∀x<0 (x² > 0)
+  - for all x that are <0, are any x² > 0?
+  - also ∀x(x < 0 → x² > 0)
+- the input that makes a predicate false is the counterexample
+- proving or disproving universally/existentially quantified statements
+  ![alt text](image-6.png)
+- usually you have to prove a ∃ statement true, vs proving a ∀ statement false 
+
+
+## Quantified statements
+- doing logic with predicates
+- the quantifiers have higher precedence than all other operators
+- you cannot do (∀xP(x)) ∨ Q(x) because now x is both bound and free (illegal)
+- the variable x in P(x) is a *free variable*
+- in ∀xP(x), x is now a *bound variable* bc it is bound to the quantifier
+- though you can do ∀x(P(x) ∨ Q(x)), because ∀x binds both occurences of x
+- DeMorgan's law for quantified statements:
+  - ¬(∀y Q(y)) = ∃y ¬Q(y)
+  - ¬(∃z R(z)) = ∀z ¬R(z)
+
+### Nested Quantifiers
+- Consider:
+- M(x,y): x sent an email to y.
+  - ∀x∀yM(x,y) ≡ everyone sent an email to everyone (including themselves)
+  - ∃x∃yM(x,y) ≡ someone sent an email to someone (possibly themselves)
+  - ∃x∀yM(x,y) ≡ someone sent an email to everyone (including themselves)
+  - ∀x∃yM(x,y) ≡ everyone sent an email to someone (possibly themselves)
+- the existential quantifier is trying to make the statement true
+  - only needs one to be true
+- the universal quantifier is trying to make it false
+  - only needs one to be false
+- DeMorgan's law still works, it just swaps all of the nested quantifiers
+![DeMorgan's law for nested quantifiers](image-7.png)
+  - you can do it to one quantifier at a time if necessary, but you will probably always do the whole thing
+- bringing back M(x,y): x sent an email to y.
+  - what if we want to say everyone sent an email to everyone else, but not themselves?
+  - ∀x∀y((x≠y) ∧ M(x,y)) ≡ everyone sent an email to everyone *except themselves*
+- consider L(x): x was late to the meeting
+  - we want to say that only one person was late to the meeting
+  - ∃x(L(x) ∧ ∀y((x≠y) → ¬L(y)))
+
