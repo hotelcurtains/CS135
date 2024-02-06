@@ -114,7 +114,7 @@
 - a list of data interprets as itself
   - remember to use (quote 1 2 3) or `(1 2 3)
 
-# Defining new functions
+## Defining new functions
 `(define (function-name param1 param2 ...) expr)`
 we will implement
 - arithmetic average `(x+y)/2`
@@ -134,7 +134,7 @@ we will implement
 24
 ```
 
-# Equality operators
+## Equality operators
 ```scheme
 (= n m) ; checks whether n and m are equal in value
 (eq? n m) ; identity operator - checks if n and m point to the same place in memory
@@ -295,11 +295,26 @@ let's try to implement a function like python's `filter()` recursively:
 - the quantifiers have higher precedence than all other operators
 - you cannot do (∀xP(x)) ∨ Q(x) because now x is both bound and free (illegal)
 - the variable x in P(x) is a *free variable*
+  - you cannot do any calculus with this because we don't know what to do with x
 - in ∀xP(x), x is now a *bound variable* bc it is bound to the quantifier
+  - now we can evaluate it
 - though you can do ∀x(P(x) ∨ Q(x)), because ∀x binds both occurences of x
 - DeMorgan's law for quantified statements:
   - ¬(∀y Q(y)) = ∃y ¬Q(y)
   - ¬(∃z R(z)) = ∀z ¬R(z)
+- quantifiers are sorta distributive:
+  - ∃xP(x) ∨ ∃xQ(x) ≡ ∃x(P(x) ∨ Q(x))
+  
+### Lab examples
+- Given P(x) with domain 1, 2, 3, 4, 5:
+  - ∃xP(x) ≡ P(1) ∨ P(2) ∨ P(3) ∨ P(4) ∨ P(5)
+  - ∀xP(x) ≡ P(1) ∧ P(2) ∧ P(3) ∧ P(4) ∧ P(5)
+  - ¬∃xP(x) ≡ ¬(P(1) ∨ P(2) ∨ P(3) ∨ P(4) ∨ P(5)) 
+    - ≡ ¬P(1) ∧ ¬P(2) ∧ ¬P(3) ∧ ¬P(4) ∧ ¬P(5) ≡ ∀xP(x)
+- given P(x) = ∀x(x² > x)
+  - ¬P(x) ≡ ∃x(x² ≤ x>)
+  - when negating a inequality operator, it toggles the direction *and* its "or equal to"
+- 
 
 ### Nested Quantifiers
 - Consider:
@@ -321,4 +336,5 @@ let's try to implement a function like python's `filter()` recursively:
 - consider L(x): x was late to the meeting
   - we want to say that only one person was late to the meeting
   - ∃x(L(x) ∧ ∀y((x≠y) → ¬L(y)))
-
+- ∀_x,yP(x,y) ≡ ∀x∀yP(x,y)
+- 
