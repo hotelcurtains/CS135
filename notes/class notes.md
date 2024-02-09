@@ -337,4 +337,20 @@ let's try to implement a function like python's `filter()` recursively:
   - we want to say that only one person was late to the meeting
   - ∃x(L(x) ∧ ∀y((x≠y) → ¬L(y)))
 - ∀_x,yP(x,y) ≡ ∀x∀yP(x,y)
-- 
+
+# Inference Rules
+- an argument form is a sequence of formulas (preceding premises) the last of which is called the conclusion
+- argument form is valid if, when all of the premises are true, the conclusion is also true.
+- p1, p2, ..., pn, ∴q is a valid argument iff p1 ∧ p2 ∧ ... ∧ pn → q is true
+- syllogisms have two premises and a conclusion
+- Modus Ponens:
+  - p → q
+  - p
+  - ∴q
+    - ≡ (p → q) ∧ p → q ≡ T
+- Modus Tollens
+  - p → q
+  - ¬q
+  - ∴¬p
+- you can change order of premises
+- you can replace or add a proposition equivalent to any premise
