@@ -340,6 +340,7 @@ let's try to implement a function like python's `filter()` recursively:
 
 # Inference Rules
 - an argument form is a sequence of formulas (preceding premises) the last of which is called the conclusion
+  - premises are also called hypotheses
 - argument form is valid if, when all of the premises are true, the conclusion is also true.
 - p1, p2, ..., pn, ∴q is a valid argument iff p1 ∧ p2 ∧ ... ∧ pn → q is true
 - syllogisms have two premises and a conclusion
@@ -354,3 +355,12 @@ let's try to implement a function like python's `filter()` recursively:
   - ∴¬p
 - you can change order of premises
 - you can replace or add a proposition equivalent to any premise
+- when using a truth table
+  - prove the conclusion true by finding all rows where all hypotheses are true AND the conclusion is true.
+  - if there are any rows with a truth mismatch between any hypotheses and the conclusion than the argument is false.
+- usually when they ask to prove that an argument is invalid, they want to to prove that there is some case where all of the hypotheses are true but the conclusion is false. 
+
+![Table 1.12.1: Rules of inference known to be valid arguments.](image-8.png)
+![Table 1.13.1: Rules of inference for quantified statements.](image-9.png)
+
+- 

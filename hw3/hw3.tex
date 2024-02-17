@@ -1,0 +1,115 @@
+\documentclass[draft]{article}
+\usepackage{amsmath}
+\usepackage{mathbbol}
+\usepackage{mathtools}
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage{chngcntr}
+\usepackage{amssymb}
+\counterwithin*{equation}{section}
+\counterwithin*{equation}{subsection}
+
+\title{CS 135 Written Assignment 3}
+\author{Daniel Detore}
+\date{February 17, 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+\begin{align}
+     & \neg r                    & $Hypothesis$                  & \\
+     & q \implies r              & $Hypothesis$                  & \\
+     & \neg q                    & $Modus tollens, 1,2$          & \\
+     & \neg q \implies u \land s & $Hypothesis$                  & \\
+     & u \land s                 & $Modus ponens, 3,4$           & \\
+     & s                         & $Simplification, 5$           & \\
+     & p \lor q                  & $Hypothesis$                  & \\
+     & p                         & $Disjunctive syllogism, 3, 7$ & \\
+     & p \land s                 & $Conjunction, 6, 8$           & \\
+     & p \land s \implies t      & $Hypothesis$                  & \\
+     & t                         & $Modus ponens, 9,10$          &
+\end{align}
+
+\section{}
+
+For simplicity's sake, I will use this key to represent the given propositions:
+\begin{itemize}
+    \item $p$: The dorm is locked.
+    \item $q$: The phone is on top of the tall bookshelf.
+    \item $r$: The dorm room is locked.
+    \item $s$: The phone is under the pillow.
+    \item $t$: The dorm has more than 10 floors.
+    \item $u$: The phone is in the bottom drawer of the desk.
+\end{itemize}
+
+This gives us the following list of statements:
+
+\begin{itemize}
+    \item[] $p \implies \neg q$
+    \item[] $r \implies q$
+    \item[] $p$
+    \item[] $r \lor s$
+    \item[] $t \implies u$
+\end{itemize}
+Using this list, we can deduce the following:
+\begin{align}
+     & p                 & $Hypothesis$                 & \\
+     & p \implies \neg q & $Hypothesis$                 & \\
+     & \neg q            & $Modus ponens 1, 2$          & \\
+     & r \implies q      & $Hypothesis$                 & \\
+     & \neg r            & $Modus tollens 3, 4$         & \\
+     & r \lor s          & $Hypothesis$                 & \\
+     & s                 & $Disjunctive syllogism 5, 6$ &
+\end{align}
+We have now confirmed that $s$ must be true. If we check the key, this means that 
+the phone is under the pillow.
+
+\section{}
+Let us start at the contradiction form $x = \neg x$ and derive the given formula 
+from it. I will use $E$ to replace $x$, and introduce new variables in reverse
+alphabetical order.
+\begin{align*}
+    & E \lor \neg E & $Original proposition$& \\
+    & \equiv (D \lor E) \land (\neg D \lor E) \land \neg E& $Resolution$ & \\
+    & \equiv (B \lor E) \land (\neg B \lor D) \land (\neg D \lor E) \land \neg E& $Resolution$ & \\
+    & \equiv (C \lor B) \land (\neg C \lor E) \land (\neg B \lor D) \land (\neg D \lor E) \land \neg E& $Resolution$ & \\
+    & \equiv (A \land B) \land (\neg A \lor C) \land (\neg C \lor E) \land (\neg B \lor D) \land (\neg D \lor E) \land \neg E& $Resolution$ & \\
+    & \equiv (A \land B) \land (\neg A \lor C) \land (\neg B \lor D) \land (\neg C \lor E) \land (\neg D \lor E) \land \neg E& $Commutative law$ &
+\end{align*}
+
+\section{}
+To make this argument form invalid, its premises need to be true and its
+conclusion needs to be false. For simplicity's sake I will make $P(x)$ and
+$Q(x)$'s domains $\{T,F\}$ and they will return the value I give them.
+\begin{align*}
+     & \forall x( P(x) \implies Q(x)) \\
+     & \neg P(a)                       \\
+     & \therefore \neg Q(a)
+\end{align*}
+Because $\forall x( P(x) \implies Q(x))$ places the same $x$ value into both $P(x)$ and $Q(x)$, we can simplify it to $x \implies x$. This statement is a tautology. Using the same logic, $P(a) \implies Q(a)$ (the statement implied by argument form) will be equivalent to $a \implies a$ which is, again, a tautology. Since I have proven all of the statements to be tautologies, this argument form is always true.
+
+\section{}
+
+\section{}
+This argument is invalid. If we look past the logic at what argument is being made,
+the conclusion is always false.
+
+
+
+\end{document}
+% latexmk -pvc -pvctimeoutmins=5 -pdf -pdflatex="pdflatex -interaction nonstopmode" hw3.tex
+
+Let us define some placeholder predicate names.
+\begin{align*}
+    T(x) &$: $ x $ can run 10 km in $<30$ minutes.$\\
+    S(x) &$: $ x $ is a smoker.$\\
+    H(x) &$: $ x $ can run 100 m in $<11$ seconds.$
+\end{align*}
+The domain of all three predicates consists of all athletes. Here is the argument
+rewritten with these placeholders:
+\begin{align*}
+    & \neg \exists x(T(x) \land S(x)) \\
+    & \neg \exists x(S(x) \land H(x)) \\
+    & \therefore \forall x( T(x) \implies \neg H(x))
+\end{align*}
