@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{mathbbol}
+\usepackage{mathtools}
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage{chngcntr}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[verbose]{placeins}
+\counterwithin*{equation}{section}
+\counterwithin*{equation}{subsection}
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\title{Written Assignment 4}
+\author{Daniel Detore\\CS135-B/LF}
+\date{February 25, 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+\subsection{}
+32 is not a square square-free number. It is divisible by 4, which is $ 2^2 $. 
+
+\subsection{}
+This is an invalid way to use the superset operation. John is trying to compare an integer with a set, which is not possible. He should have written:
+\begin{equation*}
+P (\{17, 19, 22, 26, 30\}, \{30\})
+\end{equation*}
+
+
+\section{}
+The given set $U$ is the set of all perfect square numbers.
+
+\subsection{}
+Yes. One such set is $B = \{0, 1, 4, 9, 16, 25, 36, 49\}$. $|B| = 8$, so $|B| > 7$.
+
+\subsection{}
+Yes. One such set is $B = \{64\}$. In this case, $B \subseteq U$ and $10 \leq 64 \leq 100$.
+
+\end{document}
