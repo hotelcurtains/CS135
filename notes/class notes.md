@@ -374,19 +374,18 @@ let's try to implement a function like python's `filter()` recursively:
   - any others are infinite sets
     - cardinality of infinity
 - order is irrelevant; membership is important
-  - \{1, 2, 3\} = \{3, 1, 2\}
-- \{0\} ~= 0
+  - \{1, 2, 3\} = 3, 1, 2
+- \{0\} != 0
   - a set and object are two different things
   - a set contains objects
 - a subset contains any amount of elements from another set and none that are not in that other set
   - a PROPER subset contains any amount of elements from another set but NOT all of them and none that are not in the other set.
   - if a set is a proper subset of another set, then it is also a regular subset of it too. not  vice versa.
 - the power set of A, P(A), is the set of all subsets of A
-  - A = \{1, 2, 3\}
+  - A = \{1, 2, 3
   - P(A) = \{∅, \{1\}, \{2\}, \{3\}, \{1, 2\}, \{1,3\} \{2,3\}, \{1,2,3\}\}
   - a set's power set has 2^(|set|) elements
 - the intersection of two sets is the set of all elements they have in common
 - the union of two sets is the set of the contents of both sets
 - set difference: A - B or A \ B = {x ∈ U | x ∈ A and x ∉ B}
   - A \ B = A ∩ B̄ 
-- 
