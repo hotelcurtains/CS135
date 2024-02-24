@@ -365,27 +365,60 @@ let's try to implement a function like python's `filter()` recursively:
 
 # Set Theory
 - A set is a well-defined collection of objects
-- set builder notation: \{x ∈ ℤ+ | x <= 4\}
+- set builder notation: `{x ∈ ℤ+ | x <= 4}`
   - the set of all x in the se tof positive integers where x is less than or equal to 4
-- set roster notation: \{1, 2, 3, 4\}
+- set roster notation: `{1, 2, 3, 4}`
 - a set whose elements can be explicitly listed is a finite set
   - i.e. the set of prime numbers
   - cardinality = |set| = amount of unique values
   - any others are infinite sets
     - cardinality of infinity
 - order is irrelevant; membership is important
-  - \{1, 2, 3\} = 3, 1, 2
-- \{0\} != 0
+  - `{1, 2, 3}` = `{3, 1, 2}`
+- `{0} != 0`
   - a set and object are two different things
   - a set contains objects
 - a subset contains any amount of elements from another set and none that are not in that other set
   - a PROPER subset contains any amount of elements from another set but NOT all of them and none that are not in the other set.
   - if a set is a proper subset of another set, then it is also a regular subset of it too. not  vice versa.
 - the power set of A, P(A), is the set of all subsets of A
-  - A = \{1, 2, 3
-  - P(A) = \{∅, \{1\}, \{2\}, \{3\}, \{1, 2\}, \{1,3\} \{2,3\}, \{1,2,3\}\}
+  - A = `{1, 2, 3}`
+  - P(A) = `{∅, {1}, {2}, {3}, {1, 2}, {1,3} {2,3}, {1,2,3}}`
   - a set's power set has 2^(|set|) elements
 - the intersection of two sets is the set of all elements they have in common
 - the union of two sets is the set of the contents of both sets
-- set difference: A - B or A \ B = {x ∈ U | x ∈ A and x ∉ B}
+- set difference: A - B or A \ B = `{x ∈ U | x ∈ A and x ∉ B}`
   - A \ B = A ∩ B̄ 
+
+# Cartesian Products
+- punnet squares
+
+![cartesian produce example](image-10.png)
+
+- may denote a product with a set's self as a power
+  - A = `{x,y}`
+  - A^2 = A×A = `{{x,x}, {x,y}, {y,x}, {y,y}}` 
+    - as a set of strings: `{xx, xy, yx, yy}`
+  - etc.
+  - unlike in finding subsets, self-products can double up the same value.
+    - `{x,x}` is not a subset of A but it is a subset of A^2
+
+# Strings
+- you can have sets of symbols or characters
+- putting the letters together without the set notation gives you a string
+  - A = `{h, i}`, string = `hi`
+- the set of all characters in a set of strings is called its alphabet
+- they also have a length (1-indexed)
+- concatenate strings by putting the name of their sets together
+  - t = abc, s = def
+  - ts = abcdef
+- can also concatenate one symbol the same way
+  - t = 001
+  - t0 = 0010
+- the empty string is λ
+  - tλ = t
+
+## Binary Strings
+- a binary string contains only 1s and 0s
+- one bit = one character in a binary string
+- all binary strings of length n = `{0,1}^n`

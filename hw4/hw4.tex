@@ -5,7 +5,6 @@
 \usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in]{geometry}
 \usepackage{chngcntr}
 \usepackage{amssymb}
-\usepackage{graphicx}
 \usepackage[verbose]{placeins}
 \counterwithin*{equation}{section}
 \counterwithin*{equation}{subsection}
@@ -29,7 +28,6 @@ This is an invalid way to use the superset operation. John is trying to compare 
 P (\{17, 19, 22, 26, 30\}, \{30\})
 \end{equation*}
 
-
 \section{}
 The given set $U$ is the set of all perfect square numbers.
 
@@ -38,5 +36,65 @@ Yes. One such set is $B = \{0, 1, 4, 9, 16, 25, 36, 49\}$. $|B| = 8$, so $|B| > 
 
 \subsection{}
 Yes. One such set is $B = \{64\}$. In this case, $B \subseteq U$ and $10 \leq 64 \leq 100$.
+
+\section{}
+\subsection{}
+\begin{itemize}
+\item Area 1 = $ \overline{ \overline{A} \cup \overline{B} \cup C } $
+\item Area 2 = $ \overline{ \overline{A} \cup B \cup \overline{C} } $ 	
+\item Area 3 = $ \overline{ A \cup \overline{B} \cup \overline{C} } $
+\item Area 4 = $ \overline{ \overline{A} \cup \overline{B} \cup \overline{C}}$
+\item Area 5 = $ \overline{ \overline{A} \cup B \cup C } $ 
+\item Area 6 = $ \overline{ A \cup \overline{B} \cup C } $
+\item Area 7 = $ \overline{ A \cup B \cup \overline{C} } $
+\item Area 8 = $\overline{ A \cup B \cup C }$
+\end{itemize}
+
+\subsection{}
+There would be 16 areas. The amount of combinations of $A, B, C,$ and $D$ would be the length of the power set $P ( \{ A, B, C, D \} )$. The power set of a set with 4 elements has $2^4 = 16$ elements.
+
+\subsection{}
+The method I used is to first find the unison of sets which gives the wanted area, as it is more intuitive. Then find the compliment of that expression and use De Morgan's laws to convert that statement to one that only uses intersections and complements. Finally the complement of the set given by that statement will be equal to the original set while only using complementation and intersection.
+
+\section{}
+\subsection{}
+\begin{equation*}
+    S(\{ \sqrt{2}, \sqrt{3}, \sqrt{5} \}) = 
+    \{ \sqrt{2}, \sqrt{3}, \sqrt{5} , \{ \sqrt{2}, \sqrt{3}, \sqrt{5} \} \}
+\end{equation*}
+
+\subsection{}
+
+\begin{align*}
+    S(\emptyset ) & = \emptyset \cup \{ \emptyset \} \\
+    & = \{ \emptyset \} \\ \\
+    S(S(\emptyset)) &= \{ \emptyset \} \cup \{ \{ \emptyset \} \} \\
+    &= \{ \emptyset, \{ \emptyset \} \} \\ \\
+    S(S(S(\emptyset))) & = \{ \emptyset, \{ \emptyset \} \}  \cup \{ \{ \emptyset, \{ \emptyset \} \} \} \\
+    & = \{ \emptyset , \{ \emptyset \} , \{ \emptyset , \{ \emptyset \} \} \} \\
+    & = \{ \{ \} , \{ \{ \} \} , \{ \{ \} , \{ \{ \} \} \} \}
+\end{align*}
+
+\subsection{} 
+$|S(P)| = |P| +1$. For instance, if $P = \{ 5, 6, 7 \}$, then $S(P) = \{ 5, 6, 7, \{ 5, 6, 7 \} \}$. 
+
+\section{}
+This formula is an erroneous extension of the inclusion-exclusion principle as it is applied to two sets. When including a third set, you need to include elements shared by all three and then remove elements that may only be common to two sets of the three, to avoid double-counting these elements. As such, to find the cardinality of the union of sets $A, B,$ and $C$, you would need to use this longer formula:
+\begin{equation*}
+    |A \cup B \cup C| = |A| + |B| + |C| + |A \cap B \cap C| - |A \cap B| - |B \cap C| - |A \cap C|
+\end{equation*}
+
+\section{}
+\begin{align*}
+    & (A \setminus B ) \setminus C & \text{Original statement} & \\
+    & (A \cap \overline{B} ) \setminus C & \text{Set Difference Law} & \\
+    & (A \cap \overline{B} ) \cap \overline{C} & \text{Set Difference Identity} & \\
+    & A \cap (\overline{B}  \cap \overline{C}) & \text{Associativity} & \\
+    & A \setminus \overline{(\overline{B}  \cap \overline{C})} & \text{Set Difference Identity} & \\
+    & A \setminus (\overline{\overline{B}}  \cap \overline{\overline{C}}) & \text{De Morgan's Law} & \\
+    & A \setminus (B  \cap \overline{\overline{C}}) & \text{Complementation Law} & \\
+    & A \setminus (B  \cap C) & \text{Complementation Law} &
+\end{align*}
+
 
 \end{document}
