@@ -40,21 +40,21 @@ Yes. One such set is $B = \{64\}$. In this case, $B \subseteq U$ and $10 \leq 64
 \section{}
 \subsection{}
 \begin{itemize}
-\item Area 1 = $ \overline{ \overline{A} \cup \overline{B} \cup C } $
-\item Area 2 = $ \overline{ \overline{A} \cup B \cup \overline{C} } $ 	
-\item Area 3 = $ \overline{ A \cup \overline{B} \cup \overline{C} } $
-\item Area 4 = $ \overline{ \overline{A} \cup \overline{B} \cup \overline{C}}$
-\item Area 5 = $ \overline{ \overline{A} \cup B \cup C } $ 
-\item Area 6 = $ \overline{ A \cup \overline{B} \cup C } $
-\item Area 7 = $ \overline{ A \cup B \cup \overline{C} } $
-\item Area 8 = $\overline{ A \cup B \cup C }$
+\item Area 1 = $ \overline{A} \cap \overline{B} \cap C  $
+\item Area 2 = $ \overline{A} \cap B \cap \overline{C}  $ 	
+\item Area 3 = $ A \cap \overline{B} \cap \overline{C}  $
+\item Area 4 = $ \overline{A} \cap \overline{B} \cap \overline{C}$
+\item Area 5 = $ \overline{A} \cap B \cap C  $ 
+\item Area 6 = $ A \cap \overline{B} \cap C  $
+\item Area 7 = $ A \cap B \cap \overline{C}  $
+\item Area 8 = $ A \cap B \cap C $
 \end{itemize}
 
 \subsection{}
 There would be 16 areas. The amount of combinations of $A, B, C,$ and $D$ would be the length of the power set $P ( \{ A, B, C, D \} )$. The power set of a set with 4 elements has $2^4 = 16$ elements.
 
 \subsection{}
-The method I used is to first find the unison of sets which gives the wanted area, as it is more intuitive. Then find the compliment of that expression and use De Morgan's laws to convert that statement to one that only uses intersections and complements. Finally the complement of the set given by that statement will be equal to the original set while only using complementation and intersection.
+The simple way is to find all combinations of $A \cap B \cap C \cap D$ possible with 0-4 of the sets replaced with its compliment.
 
 \section{}
 \subsection{}
@@ -91,9 +91,9 @@ This formula is an erroneous extension of the inclusion-exclusion principle as i
     & (A \cap \overline{B} ) \cap \overline{C} & \text{Set Difference Identity} & \\
     & A \cap (\overline{B}  \cap \overline{C}) & \text{Associativity} & \\
     & A \setminus \overline{(\overline{B}  \cap \overline{C})} & \text{Set Difference Identity} & \\
-    & A \setminus (\overline{\overline{B}}  \cap \overline{\overline{C}}) & \text{De Morgan's Law} & \\
-    & A \setminus (B  \cap \overline{\overline{C}}) & \text{Complementation Law} & \\
-    & A \setminus (B  \cap C) & \text{Complementation Law} &
+    & A \setminus (\overline{\overline{B}}  \cup \overline{\overline{C}}) & \text{De Morgan's Law} & \\
+    & A \setminus (B  \cup \overline{\overline{C}}) & \text{Complementation Law} & \\
+    & A \setminus (B  \cup C) & \text{Complementation Law} &
 \end{align*}
 
 
