@@ -250,7 +250,7 @@ let's try to implement a function like python's `filter()` recursively:
 - CNF - conjunctive normal form
   - a lot of disjunctions connected by ands
 - DNF - disjunctive normal form
-  - a lot of conjucntions connected by ors
+  - a lot of conjunctions connected by ors
 
 
 # Predicate / First Order Logic
@@ -267,8 +267,8 @@ let's try to implement a function like python's `filter()` recursively:
 - 3.2 = 16/5 ∉ ℤ
 
 ## Predicate Logic
-- recall a predicate is a ststement that only returns true or false
-- a predicate functon contains a finite number of variables and indicates whether a relationship is held by the objects represented b ythose variables.
+- recall a predicate is a statement that only returns true or false
+- a predicate function contains a finite number of variables and indicates whether a relationship is held by the objects represented by those variables.
   - when you fill in the variables with objects it becomes a proposition
   - a predicate has a variable and a domain and as such has no inherent truth value vs.
   - a proposition does not contain any variables and as such has a set truth value
@@ -298,7 +298,7 @@ let's try to implement a function like python's `filter()` recursively:
   - you cannot do any calculus with this because we don't know what to do with x
 - in ∀xP(x), x is now a *bound variable* bc it is bound to the quantifier
   - now we can evaluate it
-- though you can do ∀x(P(x) ∨ Q(x)), because ∀x binds both occurences of x
+- though you can do ∀x(P(x) ∨ Q(x)), because ∀x binds both occurrences of x
 - DeMorgan's law for quantified statements:
   - ¬(∀y Q(y)) = ∃y ¬Q(y)
   - ¬(∃z R(z)) = ∀z ¬R(z)
@@ -421,4 +421,43 @@ let's try to implement a function like python's `filter()` recursively:
 ## Binary Strings
 - a binary string contains only 1s and 0s
 - one bit = one character in a binary string
-- all binary strings of length n = `{0,1}^n`
+- all binary strings of length n = `{0,1}ⁿ`
+  - `{0,1}²` = `{00, 01, 10, 11}`
+
+# Functions
+- think of them here like a map
+  - mapping X onto Y: f: X → Y
+    - X = *domain*, Y = *target*
+  - or a subset of X × Y, where (x, y) ∈ f iff f maps x to y.
+    - in this case X and Y can be the same set
+- you can list all pairs of (x, y), i.e. (x, f(x)) if both X and Y are finite sets
+- you can do arrow diagrams
+- y is in the **range** of f iff there is an x ∈ X such that (x,y) ∈ f.
+  - i.e., all elements in Y that can be produced by some f(x)
+- when you have infinite domain you can't have a diagram for it
+  - draw a graph instead
+- a **well-defined function** has exactly one f(x) for each x
+  - anything with a ± is not well defined
+- two functions f and g are equal (f = g) iff they have the same domain and f(x) = g(x) for all x in domain
+- **one-to-one / injective function**: ∀(x1, x2) ∈ A: (x1 ≠ x2) → f(x1) ≠ f(x2)
+  - → |X| ≤ |Y|
+- **onto / surjective function**: ∀y ∈ B ∃x ∈ A: f(x) = y
+  - i.e. every element in y has an f(x) that produces it
+  - or there are no elements in y that can not be produced by taking an f(x)
+  - → |X| ≥ |Y|
+- **one-to-one correspondence / bijective**: iff both subjective and surjective
+  - → |X| = |Y|
+  - there are no bijections from **Z** to **R** or vice versa
+- if a function is strictly increasing ro strictly decrasing it is automatically one-to-one, e.g.
+  - f(n) = n-1
+  - f(n) = n³
+  - i.e. the derivative is always either >0 or <0
+
+## Floor & Ceiling Functions
+- floor: round down
+  - **R** → **Z**, where floor(x) = the largest integer Y such that y ≤ x.
+  - floor(x) = ⌊x⌋
+- ceiling: round up
+  - **R** → **Z**, where floor(x) = the smallest integer Y such that y ≥ x.
+  - ceiling(x) = ⌈x⌉
+  - 
