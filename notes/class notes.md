@@ -314,7 +314,6 @@ let's try to implement a function like python's `filter()` recursively:
 - given P(x) = ∀x(x² > x)
   - ¬P(x) ≡ ∃x(x² ≤ x>)
   - when negating a inequality operator, it toggles the direction *and* its "or equal to"
-- 
 
 ### Nested Quantifiers
 - Consider:
@@ -434,19 +433,21 @@ let's try to implement a function like python's `filter()` recursively:
 - you can do arrow diagrams
 - y is in the **range** of f iff there is an x ∈ X such that (x,y) ∈ f.
   - i.e., all elements in Y that can be produced by some f(x)
+  - range is also called 
 - when you have infinite domain you can't have a diagram for it
   - draw a graph instead
 - a **well-defined function** has exactly one f(x) for each x
   - anything with a ± is not well defined
+  - usually not considered a function if any x has >1 f(x)
 - two functions f and g are equal (f = g) iff they have the same domain and f(x) = g(x) for all x in domain
 - **one-to-one / injective function**: ∀(x1, x2) ∈ A: (x1 ≠ x2) → f(x1) ≠ f(x2)
-  - → |X| ≤ |Y|
+  - |X| ≤ |Y| → there us an injective mapping from X to Y
 - **onto / surjective function**: ∀y ∈ B ∃x ∈ A: f(x) = y
   - i.e. every element in y has an f(x) that produces it
   - or there are no elements in y that can not be produced by taking an f(x)
-  - → |X| ≥ |Y|
-- **one-to-one correspondence / bijective**: iff both subjective and surjective
-  - → |X| = |Y|
+  - |X| ≥ |Y| → there is a surjective mapping from X to Y
+- **one-to-one correspondence / bijective**: iff the function is both subjective and surjective
+  - |X| = |Y| → there is a one-to-one mapping of X onto Y
   - there are no bijections from **Z** to **R** or vice versa
 - if a function is strictly increasing ro strictly decrasing it is automatically one-to-one, e.g.
   - f(n) = n-1
@@ -460,4 +461,20 @@ let's try to implement a function like python's `filter()` recursively:
 - ceiling: round up
   - **R** → **Z**, where floor(x) = the smallest integer Y such that y ≥ x.
   - ceiling(x) = ⌈x⌉
-  - 
+
+## hilbert
+- **N** is not just **Z**⁺, it's actually **Z**⁺ ∪ `{0}`
+- can we prove that **N** and **Z**⁺ have the same cardinality? 
+  - find a one-to-one function that maps all of **N** onto **Z**⁺
+  - f: **N** → **Z**⁺
+  - f(n) = n+1
+  - this function is strictly increasing and both sets are infinite therefore this is one-to-one
+- similar concept: all of the rooms in the infinite hotel are occupied; however we can accomodate a new guest by putting him in the first room and making everyone move down one
+
+# definitions
+- set S is finite if it has the cardinality equal to `{1, 2, ..., n}` for n ∈ **N**
+- a set S is countable if it has the same cardinality of some subset of **Z**⁺
+- a set S is countably infinite if there is a one-to-one function f: S → **Z**⁺ (which is also f: **Z**⁺ → S)
+- countably infinite sets have lower cardinality than uncountably infinite sets
+  - we know |**Z**⁺| < |P(**Z**⁺)|
+  - for every possible list of sets including/excluding elements of **Z**⁺ there is a variation that you haven't listed yet
