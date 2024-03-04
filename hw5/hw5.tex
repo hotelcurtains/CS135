@@ -10,6 +10,9 @@
 \counterwithin*{equation}{subsection}
 \renewcommand{\thesubsection}{\thesection.\alph{subsection}}
 
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
 \title{Written Assignment 5}
 \author{Daniel Detore\\CS135-B/LF}
 \date{March 5, 2024}
@@ -19,10 +22,128 @@
 
 \section{}
 \subsection{}
+\begin{gather*}
+    f = \{ (a, 1), (b, 1), (c, 2) \} \\
+    f = \{ (a, 1), (b, 2), (c, 1) \} \\
+    f = \{ (a, 1), (b, 2), (c, 2) \} \\
+    f = \{ (a, 2), (b, 1), (c, 1) \} \\
+    f = \{ (a, 2), (b, 1), (c, 2) \} \\
+    f = \{ (a, 2), (b, 2), (c, 1) \}
+\end{gather*}
+All of these sets of pairs are functions and their domains contain all elements 
+of $B$, therefore they are all onto functions $f: A \rightarrow B$.
+
+\subsection{}
+\begin{gather*}
+    f = \{ (a, 1), (b, 1), (c, 1) \} \\
+    f = \{ (a, 2), (b, 2), (c, 2) \}
+\end{gather*}
+All of these sets of pairs are functions but their domains do not contain all 
+elements of $B$, therefore none of them are onto functions $f: A \rightarrow B$.
+
+\subsection{}
+There are no one-to-one functions $f: A \rightarrow B$ because $|A| > |B|$. As such
+it is impossible to map each element of $A$ uniquely onto an element of $B$.
+
+\section{}
+\subsection{}
+We can prove that $P$ is one-to-one by proving that, if two inputs provide the same output, than the inputs must be equal.\\
+Let us define two strings $a, b \in X$. To prove that $P$ is one-to-one, we can find that if $P(a) = P(b)$ then $a = b$. 
+If $P(a) = P(b)$, then $1a = 1b$.
+Since these strings are equal, removing both of their first character will still result in equal strings. This leaves us with $a = b$. 
+This proves that in all cases where $P(a) = P(b)$ then it must be true that $a = b$. As such, $P$ is a one-to-one function from $X$ to $X$.
+
+\subsection{}
+A simple counterexample is 0. Any bit string that starts with 0 is also a counterexample.
 \begin{itemize}
-    \item h
+    \item $P$'s domain and target are both $X$, the set of all bit strings, as per its definition. 
+    \item $X$ contains strings that begin with both 1 and 0. 
+    \item $P$ guarantees that the first element of any string in its range will be 1. 
+    \item Any element in $X$ that starts with 0 is outside of the range of $P$.
+    \item $P$ cannot be onto because there are elements in its target that are not in its domain.
 \end{itemize}
+
+\section{}
+We need to prove:
+\begin{equation} 
+    \floor*{ \frac{\floor*{\dfrac{x}{3}}}{2} } = \floor*{ \frac{x}{6} }
+\end{equation}
+Let us start by making a placeholder for the left side of the equation. Let
+\begin{equation} 
+    \floor*{ \frac{\floor*{\dfrac{x}{3}}}{2} } = \alpha.
+\end{equation}
+Table 1, on page 159 of our textbook \emph{Discrete Mathematics and Its 
+Applications}, offers the following biconditional:
+\begin{equation} \tag{Table 1.(1a)}
+    \floor{x} = n \text{ if and only if } n \leq x < n+1
+\end{equation}
+We can apply (Table 1.(1a)) to (2) to acquire the following:
+\begin{equation*}
+    \alpha \leq \frac{\floor*{\dfrac{x}{3}}}{2} < \alpha + 1
+\end{equation*}
+We can use algebra and multiply each part of this compound inequality by 2 to
+remove that denominator:
+\begin{equation*}
+    2\alpha \leq \floor*{\dfrac{x}{3}} < 2\alpha + 2
+\end{equation*}
+Table 1 also offers the following compound inequality:
+\begin{equation*} \tag{Table 1.(2)}
+    x-1 < \floor{x} \leq x \leq \ceil{x} < x+1
+\end{equation*}
+We can shave this down to the relevant inequality:
+\begin{equation}
+    \floor{x} \leq x
+\end{equation}
+Using (3), we can reasonably assume the following:
+\begin{gather}
+    2 \alpha \leq \floor{\dfrac{x}{3}} \implies 2 \alpha \leq \dfrac{x}{3} \\
+    \floor{\dfrac{x}{3}} < 2\alpha +2 \implies \dfrac{x}{3} < 2\alpha + 2
+\end{gather}
+Using the right sides of (4) and (5), we get the following compound inequality:
+\begin{equation*}
+    2 \alpha \leq \dfrac{x}{3} < 2\alpha + 2
+\end{equation*}
+Dividing all parts by 2 gives us the following:
+\begin{equation}
+    \alpha \leq \dfrac{x}{6} < \alpha + 1
+\end{equation}
+We can now apply (Table 1.(1a)) to (6):
+\begin{equation*}
+    \floor*{\dfrac{x}{6}} = \alpha
+\end{equation*}
+And we can fill in the value of $\alpha$:
+\begin{equation*}
+    \floor*{\dfrac{x}{6}} = \floor*{ \frac{\floor*{\dfrac{x}{3}}}{2} }
+\end{equation*}
+If we switch the sides, we reach (1), which was to be proven:
+\begin{equation} \tag{1}
+    \floor*{ \frac{\floor*{\dfrac{x}{3}}}{2} } = \floor*{ \frac{x}{6} }
+\end{equation}
 
 
 
 \end{document}
+
+
+
+
+
+
+onto functions missing some element of A:
+\{ (a, 1), (b, 2) \} \\
+\{ (a, 2), (b, 1) \} \\
+\{ (a, 1), (c, 2) \} \\
+\{ (a, 2), (c, 1) \} \\
+\{ (b, 1), (c, 2) \} \\
+\{ (b, 2), (c, 1) \} \\
+
+NOT onto functions missing some e of X:
+\{ (a, 1) \} \\
+\{ (a, 2) \} \\
+\{ (b, 1) \} \\ 
+\{ (b, 2) \} \\
+\{ (c, 1) \} \\
+\{ (c, 2) \} \\
+\{ (a, 1), (b, 1) \} \\
+\{ (a, 1), (c, 1) \} \\
+\{ (b, 1), (c, 1) \} \\
