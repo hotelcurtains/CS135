@@ -462,14 +462,14 @@ let's try to implement a function like python's `filter()` recursively:
   - **R** → **Z**, where floor(x) = the smallest integer Y such that y ≥ x.
   - ceiling(x) = ⌈x⌉
 
-## hilbert
+## Hilbert
 - **N** is not just **Z**⁺, it's actually **Z**⁺ ∪ `{0}`
 - can we prove that **N** and **Z**⁺ have the same cardinality? 
   - find a one-to-one function that maps all of **N** onto **Z**⁺
   - f: **N** → **Z**⁺
   - f(n) = n+1
   - this function is strictly increasing and both sets are infinite therefore this is one-to-one
-- similar concept: all of the rooms in the infinite hotel are occupied; however we can accomodate a new guest by putting him in the first room and making everyone move down one
+- similar concept: all of the rooms in the infinite hotel are occupied; however we can accommodate a new guest by putting him in the first room and making everyone move down one
 
 # definitions
 - set S is finite if it has the cardinality equal to `{1, 2, ..., n}` for n ∈ **N**
@@ -478,3 +478,17 @@ let's try to implement a function like python's `filter()` recursively:
 - countably infinite sets have lower cardinality than uncountably infinite sets
   - we know |**Z**⁺| < |P(**Z**⁺)|
   - for every possible list of sets including/excluding elements of **Z**⁺ there is a variation that you haven't listed yet
+
+# Review
+
+- uncountable → greater cardinality than **Z**+
+
+- compressing an interval:
+  - multiply it by some fraction 0 < m < 1 and add some similar fraction
+  - e.g. [0,1] -> (0,1)
+    - some compression function f(x) = x/3 + 1/2
+  - schroder-bernstein theorem tells us that, because we can do this compression, then [0,1] has the same cardinality as (0,1)
+- if X and Y is countable, then X ∪ Y is countable
+- no union of countable sets will equal an uncountable set
+- power set of an uncountable set will *always* have a greater cardinality than the original set
+- 
