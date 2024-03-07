@@ -7,7 +7,7 @@
 - coding is the easiest part -- actually designing what you're coding is the hard part
 
 # Scheme / DrRacket
-- DrRacket seems to work exactly like IDLE
+- DrRacket seems to work like IDLE
 - everything is either an atom or a list
 - he uses language Pretty Big, idk what difference it makes
 ## Atoms (primitive data types)
@@ -166,40 +166,7 @@ you can do this because 2 is stored in the same memory location no matter what v
 ```
 the lists point to different memory locations, but their elements are equal.
 
-# Logic
-- Logic is a study of arguments
-- Arguments are a sequence of statements whose purpose is to establish the truth of an assertion.
-- those statements are *premises*, except for the last one which is a *conclusion*
-- a proposition will be true or false always
-  - "It is raining" is a valid proposition
-  - "What time is it?" is obviously not a proposition
-- two boolean formulas are considered equivalent if they have the same formulas
-  - implies that their truth tables are the same
-
-## Compound Propositions
-for valid propositions p and q, these are valid propositions
-- ¬p (~p)
-  - not p
-- p ∨ q
-  - p or q
-  - disjunction
-- p ∧ q
-  - p and q
-  - conjunction
-- p → q (p => q)
-  - p then q
-  - implication / conditional
-  - p = hypothesis, q = consequence
-  - uncommon versions:
-    - p only if q = p → q
-    - p unless q = ¬q → p = p ∨ q
-  - p → q = ¬q ∨ p
-- p ↔ q (p ⇔ q)
-  - p iff q
-  - biconditional / equivalence
-
-
-# Conditionals
+## Conditionals
 ```scheme
 (if (condition) "runs if true" "runs if false")
 (cond [(condition1) "true"] [(condition2) "true"] [else "runs for else"])
@@ -235,10 +202,99 @@ let's try to implement a function like python's `filter()` recursively:
 ```
 - we're using `cond` because there are 3 possible branches -- the list is empty, the current item is caught by the filter, and the current item is not caught by the filter.
 
-# Boolean Math
+# Logic
+- Logic is a study of arguments
+- Arguments are a sequence of statements whose purpose is to establish the truth of an assertion.
+- those statements are *premises*, except for the last one which is a *conclusion*
+- a proposition will be true or false always
+  - "It is raining" is a valid proposition
+  - "What time is it?" is not a T/F statement therefore it's not a proposition
+- two boolean formulas are considered equivalent if they have the same formulas
+  - implies that their truth tables are the same
+
+# Compound Propositions
+- The conjunction symbol ∧ is AND.
+
+![conjunction truth table](image.png)
+
+- The disjunction symbol ∨ is inclusive OR.
+
+![Alt text](image-1.png)
+
+- XOR looks the same ⊕.
+  - XOR and OR are nearly the same except T XOR T = F whereas T OR T = T.
+- negation symbol NOT ¬ toggles its input.
+
+
+- when filling in a logic table
+  - amount of rows = 2^(amt of variables)
+  - just variable rows:
+  - rightmost row alternates TFTF...
+  - then TTFF
+  - then TTTTFFFF
+  - etc. (keep doubling the amount of T/F)
+  - i think of it as binary counting but who cares
+
+- given p implies q (p -> q), the only way it can return false is if p is T and q is F.
+![nonstandard logic table for p implies q](image-2.png)
+  - p is the hypothesis, q is the conclusion
+  - in this way, a conditional statement will always return true if the hypothesis p is false
+    - if you don't mow the lawn, Mr. Smith can pay you or not and it doesn't matter. this always returns T.
+    - if you mow the lawn and he pays you then the contract is fulfilled and it returns T.
+    - if you *do* mow the lawn and he *doesn't* pay you, the contract is broken and the statement returns false.
+    - i.e. True -> False is the only way to make it return F.
+
+here's a table for the converse, contrapositive, and inverse of a conditional statement.
+![table for the converse, contrapositive, and inverse.](image-3.png)
+
+- biconditional statements like p ↔ q require both to be the same to return T.
+  - if p and q return T. if not p and not q then return T. else return F.
+
+![Alt text](image-4.png)
+
+- apparently you can use p ⇔ q to denote that p = q (and therefore p ↔ q = T) but i don't think the book ever does
+
+
+for valid propositions p and q, these are valid propositions
+- ¬p (~p)
+  - not p
+- p ∨ q
+  - p or q
+  - disjunction
+- p ∧ q
+  - p and q
+  - conjunction
+- p → q (p => q)
+  - p then q
+  - implication / conditional
+  - p = hypothesis, q = consequence
+  - uncommon versions:
+    - p only if q = p → q
+    - p unless q = ¬q → p = p ∨ q
+  - p → q = ¬q ∨ p
+- p ↔ q (p ⇔ q)
+  - p iff q
+  - biconditional / equivalence
+- order of operations:
+1. fill in actual truth values
+2. any quantified statements
+3. innermost parentheses
+4. not ¬
+5. and ∧, or ∨
+6. conditionals ⇒, biconditionals ⇔
+
+## Logical Equivalences
+- a tautology is always correct, regardless of the input
+  - p ∨ ¬p = T no matter the value of p
+  - p ∧ q -> p = T
+- a contradiction is always false, regardless of the input
+  - p ∧ ¬p = F no matter the value of p
+- apparently logical equivalence is supposed to be ≡ but i'm using =. i don't have ≡ on my keyboard.
+  - two things are logically equivalent if, for every possible combination of inputs, output the same values
+  - you can prove this by making a logic table and putting the things you want to prove equivalent next to each other
+
 ![Table 6 logical equivalences](<logical equivalences.png>)
-![conditional identities](image-5.png)
-![various versions of conditional statements](IMG_3921.JPG)
+![various properties of conditional statements](IMG_3921.JPG)
 - for some laws, multiplication = AND and addition = OR
 - p implies q ≡ (not p) or q
 - not(p implies q) ≡ p and (not q)
@@ -250,23 +306,31 @@ let's try to implement a function like python's `filter()` recursively:
 - CNF - conjunctive normal form
   - a lot of disjunctions connected by ands
 - DNF - disjunctive normal form
+  - minterm expansion form
   - a lot of conjunctions connected by ors
 
 
-# Predicate / First Order Logic
-## symbols
+
+## symbol key
 - ∈ = belongs to / is an element of
 - ℤ = set of integers
   - ℤ⁺ = all positive integers (excl. 0)
 - ℝ = set of all real numbers
 - ℚ = set of all rational integers
   - recall scheme handles fractions well
-- ∀ = for all - universal quantifier
-- ∃ = there exists - existential quantifier
-- 3 ∈ ℤ
-- 3.2 = 16/5 ∉ ℤ
+- ℕ = set of all natural numbers = **Z**⁺ ∪ `{0}`
+- ∀ = for all -- universal quantifier
+- ∃ = there exists -- existential quantifier
+- not ¬
+- and ∧
+- or ∨
+- xor ⊕
+- logically equivalent to ≡
+- implies →
+- iff ↔ biconditional arrow
+- requires ⇔ iff double arrow
 
-## Predicate Logic
+# Quantified Statements
 - recall a predicate is a statement that only returns true or false
 - a predicate function contains a finite number of variables and indicates whether a relationship is held by the objects represented by those variables.
   - when you fill in the variables with objects it becomes a proposition
@@ -274,38 +338,33 @@ let's try to implement a function like python's `filter()` recursively:
   - a proposition does not contain any variables and as such has a set truth value
 - the domain is the set of all variables for which it is defined, i.e. all that make sense
 - ex
-  - Let D = {1,2,3,4,5} and consider ∀x (x² >= x)
+  - Let D = {1,2,3,4,5} and consider ∀x (x² ≥ x)
   - Is this statement true?
-  - yes. do the math and work through the domain.
+  - prove for every element of the domain; yes.
 - Existential Quantifier ex.
-  - Let P(x) = "x² -4 > x" be a predicate with a domain consisting of all real numbers
+  - Let P(x) = x² - 4 > x be a predicate with a domain consisting of all real numbers
   - ∃x P(x) (there exists an x for P(x) that makes P(x) true)
   - True! (10, per se)
 - ∀x<0 (x² > 0)
   - for all x that are <0, are any x² > 0?
   - also ∀x(x < 0 → x² > 0)
-- the input that makes a predicate false is the counterexample
+- the input that makes a predicate false is the ***counterexample***
 - proving or disproving universally/existentially quantified statements
   ![alt text](image-6.png)
 - usually you have to prove a ∃ statement true, vs proving a ∀ statement false 
-
-
-## Quantified statements
-- doing logic with predicates
 - the quantifiers have higher precedence than all other operators
-- you cannot do (∀xP(x)) ∨ Q(x) because now x is both bound and free (illegal)
 - the variable x in P(x) is a *free variable*
   - you cannot do any calculus with this because we don't know what to do with x
 - in ∀xP(x), x is now a *bound variable* bc it is bound to the quantifier
   - now we can evaluate it
-- though you can do ∀x(P(x) ∨ Q(x)), because ∀x binds both occurrences of x
+- you cannot do (∀xP(x)) ∨ Q(x) because now x is both bound and free (illegal)
+  - though you can do ∀x(P(x) ∨ Q(x)), because here ∀x binds both occurrences of x
 - DeMorgan's law for quantified statements:
   - ¬(∀y Q(y)) = ∃y ¬Q(y)
   - ¬(∃z R(z)) = ∀z ¬R(z)
-- quantifiers are sorta distributive:
-  - ∃xP(x) ∨ ∃xQ(x) ≡ ∃x(P(x) ∨ Q(x))
+- quantifiers are sorta distributive [like here](https://math.stackexchange.com/a/3059525)
   
-### Lab examples
+## Lab examples
 - Given P(x) with domain 1, 2, 3, 4, 5:
   - ∃xP(x) ≡ P(1) ∨ P(2) ∨ P(3) ∨ P(4) ∨ P(5)
   - ∀xP(x) ≡ P(1) ∧ P(2) ∧ P(3) ∧ P(4) ∧ P(5)
@@ -315,7 +374,7 @@ let's try to implement a function like python's `filter()` recursively:
   - ¬P(x) ≡ ∃x(x² ≤ x>)
   - when negating a inequality operator, it toggles the direction *and* its "or equal to"
 
-### Nested Quantifiers
+## Nested Quantifiers
 - Consider:
 - M(x,y): x sent an email to y.
   - ∀x∀yM(x,y) ≡ everyone sent an email to everyone (including themselves)
@@ -325,17 +384,15 @@ let's try to implement a function like python's `filter()` recursively:
 - the existential quantifier is trying to make the statement true
   - only needs one to be true
 - the universal quantifier is trying to make it false
-  - only needs one to be false
 - DeMorgan's law still works, it just swaps all of the nested quantifiers
 ![DeMorgan's law for nested quantifiers](image-7.png)
   - you can do it to one quantifier at a time if necessary, but you will probably always do the whole thing
-- bringing back M(x,y): x sent an email to y.
-  - what if we want to say everyone sent an email to everyone else, but not themselves?
+- what if we want to say everyone sent an email to everyone else, but not themselves?
   - ∀x∀y((x≠y) ∧ M(x,y)) ≡ everyone sent an email to everyone *except themselves*
 - consider L(x): x was late to the meeting
   - we want to say that only one person was late to the meeting
   - ∃x(L(x) ∧ ∀y((x≠y) → ¬L(y)))
-- ∀_x,yP(x,y) ≡ ∀x∀yP(x,y)
+- ∀x,yP(x,y) ≡ ∀x∀yP(x,y)
 
 # Inference Rules
 - an argument form is a sequence of formulas (preceding premises) the last of which is called the conclusion
@@ -396,11 +453,11 @@ let's try to implement a function like python's `filter()` recursively:
 
 - may denote a product with a set's self as a power
   - A = `{x,y}`
-  - A^2 = A×A = `{{x,x}, {x,y}, {y,x}, {y,y}}` 
+  - A^2 = A×A = `{(x,x), (x,y), (y,x), (y,y)}` 
     - as a set of strings: `{xx, xy, yx, yy}`
   - etc.
   - unlike in finding subsets, self-products can double up the same value.
-    - `{x,x}` is not a subset of A but it is a subset of A^2
+    - `{(x,x)}` is not a subset of A but it is a subset of A^2
 
 # Strings
 - you can have sets of symbols or characters
@@ -462,27 +519,29 @@ let's try to implement a function like python's `filter()` recursively:
   - **R** → **Z**, where floor(x) = the smallest integer Y such that y ≥ x.
   - ceiling(x) = ⌈x⌉
 
-## Hilbert
+# countability of sets
+- set S is finite if it has a cardinality equal to `|{1, 2, ..., n}|` for n ∈ **N**
+- a set S is countable if it has the same cardinality of some subset of **Z**⁺
+- a set S is countably infinite if there is a one-to-one function f: S → **Z**⁺ (which is also f: **Z**⁺ → S)
+- uncountably infinite → greater cardinality than **Z**+
+- countably infinite sets have lower cardinality than uncountably infinite sets
+  - we know |**Z**⁺| < |P(**Z**⁺)| 
+    - as a rule |P(S)| > |S|
+  - for every possible list of sets including/excluding elements of **Z**⁺ there is a variation that you haven't listed yet
 - **N** is not just **Z**⁺, it's actually **Z**⁺ ∪ `{0}`
 - can we prove that **N** and **Z**⁺ have the same cardinality? 
   - find a one-to-one function that maps all of **N** onto **Z**⁺
   - f: **N** → **Z**⁺
   - f(n) = n+1
   - this function is strictly increasing and both sets are infinite therefore this is one-to-one
-- similar concept: all of the rooms in the infinite hotel are occupied; however we can accommodate a new guest by putting him in the first room and making everyone move down one
+- all of the rooms in the uncountably infinite hotel are occupied; however we can accommodate one new guest by putting him in the first room and making everyone move down one
+  - the rooms are uncountably infinite → there is actually another room even though we said they're all full
+  - for all current guests map **Z**⁺ → **Z**⁺ by current room number n ∈ **Z**⁺ and new room no. f(n) ∈ **Z**⁺ where f(n) = n+1
+  - now the first room is still here but empty for the new guest
 
-# definitions
-- set S is finite if it has the cardinality equal to `{1, 2, ..., n}` for n ∈ **N**
-- a set S is countable if it has the same cardinality of some subset of **Z**⁺
-- a set S is countably infinite if there is a one-to-one function f: S → **Z**⁺ (which is also f: **Z**⁺ → S)
-- countably infinite sets have lower cardinality than uncountably infinite sets
-  - we know |**Z**⁺| < |P(**Z**⁺)|
-  - for every possible list of sets including/excluding elements of **Z**⁺ there is a variation that you haven't listed yet
 
-# Review
 
-- uncountable → greater cardinality than **Z**+
-
+# Midterm Review
 - compressing an interval:
   - multiply it by some fraction 0 < m < 1 and add some similar fraction
   - e.g. [0,1] -> (0,1)
@@ -491,4 +550,3 @@ let's try to implement a function like python's `filter()` recursively:
 - if X and Y is countable, then X ∪ Y is countable
 - no union of countable sets will equal an uncountable set
 - power set of an uncountable set will *always* have a greater cardinality than the original set
-- 
