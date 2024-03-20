@@ -168,8 +168,15 @@ the lists point to different memory locations, but their elements are equal.
 
 ## Conditionals
 ```scheme
-(if (condition) "runs if true" "runs if false")
-(cond [(condition1) "true"] [(condition2) "true"] [else "runs for else"])
+(if (condition) 
+  "runs if true" 
+  "runs if false"
+)
+(cond 
+  [(condition1) "1 true"] 
+  [(condition2) "2 true"] 
+  [else "runs for else"]
+)
 ```
 the basics:
 ```scheme
@@ -506,7 +513,7 @@ for valid propositions p and q, these are valid propositions
 - **one-to-one correspondence / bijective**: iff the function is both subjective and surjective
   - |X| = |Y| → there is a one-to-one mapping of X onto Y
   - there are no bijections from **Z** to **R** or vice versa
-- if a function is strictly increasing ro strictly decrasing it is automatically one-to-one, e.g.
+- if a function is strictly increasing ro strictly decreasing it is automatically one-to-one, e.g.
   - f(n) = n-1
   - f(n) = n³
   - i.e. the derivative is always either >0 or <0
@@ -539,8 +546,6 @@ for valid propositions p and q, these are valid propositions
   - for all current guests map **Z**⁺ → **Z**⁺ by current room number n ∈ **Z**⁺ and new room no. f(n) ∈ **Z**⁺ where f(n) = n+1
   - now the first room is still here but empty for the new guest
 
-
-
 # Midterm Review
 - compressing an interval:
   - multiply it by some fraction 0 < m < 1 and add some similar fraction
@@ -550,3 +555,41 @@ for valid propositions p and q, these are valid propositions
 - if X and Y is countable, then X ∪ Y is countable
 - no union of countable sets will equal an uncountable set
 - power set of an uncountable set will *always* have a greater cardinality than the original set
+
+# Relations
+- a relation R of A to B is any subset A × B
+- A is the domain
+- B is the co-domain
+- instead of (x,y) ∈ R, we write x R y.
+- you can draw arrow diagrams or tables to show all possible pairs
+- when the domain and co-domain are the same you can make a directed graph
+  - like an arrow diagram but it's just one set of points
+  - pairs like (1,1) will show as the vertex 1 pointing to itself
+  - a directed graph G is a pair (V,E) where V is a set of vertices and E is a set of ordered pairs (u,v) ∈ V×V called the directed edges.
+  - ![directed graph for a relation](image-5.png)
+- a relation R on a set A is **reflexive** if (a,a) ∈ R for all a ∈ A.
+  - e.g. a reflexive relation of `{1,2}` would look like `{(1,1), (2,2)}`
+  - it could also include other pairs like `{(1,1), (1,2), (2,1), (2,2)}`
+  - represented as a matrix, its diagonal will be all 1s
+    - place a 1 in coords where the pair exists in the relation and 0 in the rest
+- a relation R on a set A is **symmetric** if (a,b) ∈ R ⇔ (b,a) ∈ R for all a,b ∈ A
+  - i.e. for all pairs (a,b) in the set there will be another pair (b,a)
+  - the matrix will reflect over the diagonal
+- a relation R on a set A is **transitive** if [for all a,b,c ∈ A] (a,b) ∈ R and (b,c) ∈ R then (a,c) ∈ R.
+  - the pairs (a,b) and (b,c) require the existence of (a,c). if no (a,c) then R is not transitive.
+- a relation R on a set A is an **equivalence** relation if it is reflexive, symmetric, and transitive
+  - e.g. Let R be a relation on **Z**: (n,m) ∈ R ⇔ n - m is a multiple of 5
+  - reflexive: any integer a-a = 0; 0 is a multiple of 5
+  - symmetric: if (m,n) ∈ R so does (n,m) because n-m = -(m-n) = 5k (k is some integer)
+  - transitive: for (n,m) and (m,k) is there a (n,k)?
+    - n-k
+    - = n - m + m - k
+    - = (n-m) + (m-k)
+    - there is (n,m) and there is (m,k)
+    - because we can prove that n-k is made of other elements in the set then (n,k) must be in the set
+- given relation R on set A, an equivalence class of an element a ∈ A, written `[a]`, is `{x ∈ A | (x,a) ∈ R}`
+  - i.e. all the elements than a can be paired with a to make the largest possible equivalence relation
+- an **antisymmetric** relation is one where: for a,b ∈ R, if there is aRb and bRa then a = b
+  - offers no info about aRa; R could be reflexive or irreflexive
+- an **asymmetric** relation is both antisymmetric and irreflexive
+  - ∀a,b ∈ A: aRb ⇒ ¬(bRa)
