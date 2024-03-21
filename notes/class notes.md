@@ -608,11 +608,12 @@ for valid propositions p and q, these are valid propositions
     - if y~z then [y] = [z]
     - if y is not ~ z, then [y] ∩ [z] = ∅
   - let A be the set of all people in a friend group. let R be a relation over A where aRb iff a,b ∈ A and a and b know each other. this is an equivalence relation so we can write this as a~b. for z ∈ A, [z] will be the set of everyone in the group who knows z.
+  - in an equivalence relation, every element is in some equivalence class because all equivalence relations are reflexive.
 - partitions are isolated sections of an equivalence relation.
 ![partitions](image-17.png)
 
 
-# Types of Walks
+## Types of Walks
 - we can walk through the graph like this ![alt text](image-13.png)
   - an **open walk** has different first and last vertices
   - a **closed walk** has the same first and last vertex
@@ -629,3 +630,21 @@ for valid propositions p and q, these are valid propositions
 - A **cycle** is a circuit of length ≥1 in which no vertex occurs more than once, except the first and last vertices which are the same.
 - cycle vs circuit
   - ![cycle vs circuit](image-15.png)
+
+# Induction
+principle of mathematical induction:
+```
+P(b)
+∀k≥b P(k) → P(k+1)
+∴ ∀n≥b P(n)
+```
+inductive proof:
+- we are trying to prove P(n) holds for all n ∈ **Z⁺**.
+- prove the basis
+  - we prove that P(1) holds. we use 1 because it is the least element of **Z⁺**.
+- inductive step
+  - prove that for k≥1, P(k) ⇒ P(k+1)
+- proof of inductive step
+  - prove that k+1 holds.
+- now we know P(k+1) is true
+- by the principle of induction the theorem holds for all n ∈ **Z⁺**.
