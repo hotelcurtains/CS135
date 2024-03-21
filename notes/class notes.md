@@ -70,7 +70,7 @@
     > (number? 7/12)
     #t
     > 
-    > (number? "haha")
+    > (number? "hi")
     #f
     ```
 
@@ -562,34 +562,70 @@ for valid propositions p and q, these are valid propositions
 - B is the co-domain
 - instead of (x,y) ∈ R, we write x R y.
 - you can draw arrow diagrams or tables to show all possible pairs
-- when the domain and co-domain are the same you can make a directed graph
-  - like an arrow diagram but it's just one set of points
-  - pairs like (1,1) will show as the vertex 1 pointing to itself
+
+## Directed Graphs
+- when the domain and co-domain are the same you can make a directed graph (digraph)
   - a directed graph G is a pair (V,E) where V is a set of vertices and E is a set of ordered pairs (u,v) ∈ V×V called the directed edges.
-  - ![directed graph for a relation](image-5.png)
+- like an arrow diagram but it's just one set of points
+- pairs like (1,1) will show as the vertex 1 pointing to itself
+- ![directed graph for a relation](image-5.png)
+- **in-degree** of a vertex is the amount of arrows pointing toward it, **out-degree** is the amount pointing away
+- of uRv, u is the **head** and v is the **tail**
+- if a is the head and tail of an arrow, that arrow is called a **self-loop**
+
+## Types of Relations
 - a relation R on a set A is **reflexive** if (a,a) ∈ R for all a ∈ A.
+  - i.e. it includes all possible self-loops
   - e.g. a reflexive relation of `{1,2}` would look like `{(1,1), (2,2)}`
   - it could also include other pairs like `{(1,1), (1,2), (2,1), (2,2)}`
   - represented as a matrix, its diagonal will be all 1s
     - place a 1 in coords where the pair exists in the relation and 0 in the rest
+- an **irreflexive** relation has no pair aRa for any a ∈ R.
 - a relation R on a set A is **symmetric** if (a,b) ∈ R ⇔ (b,a) ∈ R for all a,b ∈ A
   - i.e. for all pairs (a,b) in the set there will be another pair (b,a)
   - the matrix will reflect over the diagonal
-- a relation R on a set A is **transitive** if [for all a,b,c ∈ A] (a,b) ∈ R and (b,c) ∈ R then (a,c) ∈ R.
-  - the pairs (a,b) and (b,c) require the existence of (a,c). if no (a,c) then R is not transitive.
-- a relation R on a set A is an **equivalence** relation if it is reflexive, symmetric, and transitive
-  - e.g. Let R be a relation on **Z**: (n,m) ∈ R ⇔ n - m is a multiple of 5
-  - reflexive: any integer a-a = 0; 0 is a multiple of 5
-  - symmetric: if (m,n) ∈ R so does (n,m) because n-m = -(m-n) = 5k (k is some integer)
-  - transitive: for (n,m) and (m,k) is there a (n,k)?
-    - n-k
-    - = n - m + m - k
-    - = (n-m) + (m-k)
-    - there is (n,m) and there is (m,k)
-    - because we can prove that n-k is made of other elements in the set then (n,k) must be in the set
-- given relation R on set A, an equivalence class of an element a ∈ A, written `[a]`, is `{x ∈ A | (x,a) ∈ R}`
-  - i.e. all the elements than a can be paired with a to make the largest possible equivalence relation
-- an **antisymmetric** relation is one where: for a,b ∈ R, if there is aRb and bRa then a = b
+  - ![symmetric directed graph + info](image-11.png)
+- an **anti-symmetric** relation is one where: for a,b ∈ R, if there is aRb and bRa then a = b
+  - i.e. if there is aRb, the must be **no** bRa.
   - offers no info about aRa; R could be reflexive or irreflexive
 - an **asymmetric** relation is both antisymmetric and irreflexive
   - ∀a,b ∈ A: aRb ⇒ ¬(bRa)
+  - there are no pairs aRa and, for all pairs xRy there is no yRx.
+- a relation R on a set A is **transitive** if [for all a,b,c ∈ A] (a,b) ∈ R and (b,c) ∈ R then (a,c) ∈ R.
+  - the pairs (a,b) and (b,c) require the existence of (a,c). if no (a,c) then R is not transitive.
+  - ![transitive directed graph and extra info](image-12.png)
+  - a relation is either transitive or not, there is no neither option.
+
+### Equivalence Relations
+- a relation R on a set A is an **equivalence** relation if it is reflexive, symmetric, and transitive
+  - e.g.:
+  - ![alt text](image-16.png)
+- If A is the domain of an equivalence relation and a ∈ A, then [a] is defined to be the set of all x ∈ A such that a~x. The set is called an **equivalence class**.
+  - i.e. `{x ∈ A | (x,a) ∈ R}`
+  - i.e. all the elements than a can be paired with a to make the largest possible equivalence relation
+  - when R is an equivalence relation, we will write a~b instead of aRb.
+  - equivalent sets are either equal or disjoint. for y,z ∈ equivalence relation R,
+    - if y~z then [y] = [z]
+    - if y is not ~ z, then [y] ∩ [z] = ∅
+  - let A be the set of all people in a friend group. let R be a relation over A where aRb iff a,b ∈ A and a and b know each other. this is an equivalence relation so we can write this as a~b. for z ∈ A, [z] will be the set of everyone in the group who knows z.
+- partitions are isolated sections of an equivalence relation.
+![partitions](image-17.png)
+
+
+# Types of Walks
+- we can walk through the graph like this ![alt text](image-13.png)
+  - an **open walk** has different first and last vertices
+  - a **closed walk** has the same first and last vertex
+  - a walk from a to b to c is denoted like ⟨a, b, c⟩ which requires that (a,b) and (b,c) ∈ R
+  - length is the amount of pairs that make it up, including duplicates
+  - a walk with 0 length like ⟨a⟩ is valid
+  - a walk ⟨a, a⟩ is valid and closed, assuming (a,a) exists
+- A **trail** is a walk in which no *edge* occurs more than once.
+- A **path** is a walk in which no *vertex* occurs more than once.
+- trail vs path
+  - ![trail vs path](image-14.png)
+- A **circuit** is a closed trail.
+  - all entries are unique, and first and last are the same
+- A **cycle** is a circuit of length ≥1 in which no vertex occurs more than once, except the first and last vertices which are the same.
+- cycle vs circuit
+  - ![cycle vs circuit](image-15.png)
