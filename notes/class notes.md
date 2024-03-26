@@ -652,4 +652,39 @@ P(b)
     - prove that k+1 holds.
   - now we know P(k+1) is true
   - by the principle of induction the theorem holds for all n ∈ **Z⁺**.
-- [this](https://www.youtube.com/watch?v=LwqrOpoK9FE) is how you wanna do it\
+- [this](https://www.youtube.com/watch?v=LwqrOpoK9FE) is how you wanna do it
+
+## Strong induction
+```
+P(6)
+P(6) → P(7)
+P(6) ∧ P(7) → P(8)
+P(6) ∧ P(7) ∧ P(8) → P(9)
+P(6) ∧ P(7) ∧ P(8) ∧ P(9) → P(10)
+...
+⋀(6≤i≤k) P(i) → P(k+1)
+...
+∴ ∀(n≥6) P(n)
+```
+```
+P(b)
+∀(k≥b)( ⋀(b≤i≤k) P(i) → P(k+1) )
+∴ ∀(n≥b) P(n)
+```
+strategy:
+- prove the basis P(1)
+  - can be different numbers depending on what you're proving
+- inductive step: 
+  - assume that for all k≥1, the statement holds for all P(1), P(2), P(3), ..., P(k)
+  - then prove P(k+1)
+
+# Axioms for natural numbers
+natural numbers are the minimal set which follow these properties
+- there is a 0 which is a member of N
+- there is a map S: N → N which associates every n ∈ N with n's successor
+  - S(0) = 1, S(1) = 2, S(2) = 3, S(3) = 4...
+  - we can define a predecessor function, addition, and multiplication with similar functions
+- ∀(n ∈ N) 0≠S(n)
+- ∀(m,n ∈ N) m ≠ n ⇒ S(m) ≠ S(n)
+- induction axiom where ϕ is some boolean function
+- all sets that have this are indistinguishable from each other since there is only one set that does this
