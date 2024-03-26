@@ -638,13 +638,18 @@ P(b)
 ∀k≥b P(k) → P(k+1)
 ∴ ∀n≥b P(n)
 ```
-inductive proof:
-- we are trying to prove P(n) holds for all n ∈ **Z⁺**.
-- prove the basis
-  - we prove that P(1) holds. we use 1 because it is the least element of **Z⁺**.
-- inductive step
-  - prove that for k≥1, P(k) ⇒ P(k+1)
-- proof of inductive step
-  - prove that k+1 holds.
-- now we know P(k+1) is true
-- by the principle of induction the theorem holds for all n ∈ **Z⁺**.
+- think of it like infinite modus ponens in a row
+  - you just have to prove the first one and that each one implies the next.
+  - i.e., for all k, P(k) holds and P(k) implies P(k+1)
+- the *inductive hypothesis* is the supposition that P(k) holds
+- inductive proof: for example we are trying to prove P(n) holds for all n ∈ **Z⁺**.
+  - prove the basis
+    - we prove that P(1) holds. we use 1 because it is the least element of **Z⁺**.
+  - inductive step
+    - prove that for k≥1, P(k) ⇒ P(k+1)
+    - when it's not obvious, the first step is undoing one operation to turn k+1 into k and proving that this holds
+  - proof of inductive step
+    - prove that k+1 holds.
+  - now we know P(k+1) is true
+  - by the principle of induction the theorem holds for all n ∈ **Z⁺**.
+- [this](https://www.youtube.com/watch?v=LwqrOpoK9FE) is how you wanna do it\
