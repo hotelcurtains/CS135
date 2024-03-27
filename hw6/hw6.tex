@@ -24,8 +24,8 @@
 
 \section{}
 It is given that $A = \{x \in R | 0 < x \leq 1\}$ and $B = \{x \in R | 0 < x < 1\}.$\\
-Let us define a set $M = \{ n \in \mathbb{Z}^+ | \frac{1}{n} \}$. By this definition, $M \subset B$. \\
-Now, let us define the set $K = B \setminus M$. By these definitions, $M \cup K = B$ and $K \cap M = \emptyset$. \\
+Let us define a set $M = \{ n \in \mathbb{Z}^+ | \frac{1}{n} \}$. By this definition, $M \subset A$ and $M \subset B$. \\
+Now, let us define the set $K = B \setminus M$. By these definitions, $K \cup M = B$ and $K \cap M = \emptyset$. \\
 Using these sets, we can define a mapping from A to B:
 \begin{equation*}
     f(x) = \begin{cases}
@@ -41,7 +41,7 @@ To prove that $R$ is an equivalence relation, I will prove that it is (1) reflex
     \begin{equation*}
         \ceil{\frac{a}{13}} = \ceil{\frac{a}{13}}.
     \end{equation*}
-    This is self-evident. By definition of $R$, for any $a \in \mathbb{Z}^+$, $(a,a) \in R$.
+    This is self-evident as equality is reflexive. By definition of $R$, for any $a \in \mathbb{Z}^+$, $(a,a) \in R$.
     \item Since the definition of $R$ is reflexive and based on equality, a symmetric operation, then $R$ should also be symmetric. As proof, for any $(a,b) \in R$ it is guaranteed that
     \begin{equation*}
         \ceil{\frac{a}{13}} = \ceil{\frac{b}{13}}.
@@ -50,7 +50,7 @@ To prove that $R$ is an equivalence relation, I will prove that it is (1) reflex
     \begin{equation*}
         \ceil{\frac{b}{13}} = \ceil{\frac{a}{13}}.
     \end{equation*}
-    This means that $(b,a)$ must also be an element of $R$. Therefore the existence of $(a,b) \in R$ implies the existence of $(b,a) \in R$, which means $R$ is symmetric.
+    This means that $(b,a)$ must also be an element of $R$. Therefore $(a,b) \in R \implies (b,a) \in R$, which means $R$ is symmetric.
     \item Similarly to 2, we can use the transitive property of equality to prove $R$ transitive. Let $a,b,c \in \mathbb{Z}^+$ and $(a,b),(b,c) \in R$. We know that $R$ is symmetric, which means we also have $(b,a) \in R$. From this information we can gather
     \begin{equation}
         \ceil{\frac{b}{13}} = \ceil{\frac{a}{13}}
@@ -67,7 +67,7 @@ To prove that $R$ is an equivalence relation, I will prove that it is (1) reflex
 \end{enumerate}
 We have now proven that $R$ is (1) reflexive, (2) symmetric, and (3) transitive, which implies that $R$ is an equivalence relation. \\
 An equivalence class of $R$, $[x]$ for any $x \in R$, would be made of any $y \in \mathbb{Z}^+$ where $\ceil{\frac{x}{13}} = \ceil{\frac{y}{13}}$.
-Generally, $[x]= \{a \in \mathbb{Z}^+, n = \ceil{\frac{x}{13}} | 13(n-1) < a \leq 13n \} $ and $\forall b \in [x]$, $[x] = [b]$. \\
+Generally, $[x]= \{a \in \mathbb{Z}^+, n = \ceil{\frac{x}{13}} \ |\ 13(n-1) < a \leq 13n \} $ and $\forall b \in [x]$, $[x] = [b]$. \\
 For example, $[1] = \{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13\}$ and $[1] = [2] = [3] = [4] = \dots = [13]$.
 
 \section{}
@@ -80,17 +80,13 @@ To prove that $R$ is an equivalence relation, I will prove that it is (1) reflex
     (|y_1| = |y_2|) \land (|y_1| \geq |x_1|) \land (|y_2| \geq |x_2|)
 \end{gather}
 \begin{enumerate}
-    \item Is $((x_1,y_1),(x_1,y_1)) \in R$? Let us rewrite the conditions for this situation:
+    \item Is $((x_1,y_1),(x_1,y_1)) \in R$? Let us rewrite the first two conditions for this situation:
     \begin{gather*}
         (|x_1| = |x_1|) \land (|x_1| \geq |y_1|) \land (|x_1| \geq |y_1|) \\
-        (|y_1| = |x_1|) \land (|y_1| \geq |x_1|) \land (|x_1| \geq |y_1|) \\
-        (|x_1| = |y_1|) \land (|x_1| \geq |y_1|) \land (|y_1| \geq |x_1|) \\
-        (|y_1| = |y_1|) \land (|y_1| \geq |x_1|) \land (|y_1| \geq |x_1|)
+        (|y_1| = |x_1|) \land (|y_1| \geq |x_1|) \land (|x_1| \geq |y_1|)
     \end{gather*}
     By replacing statements in their truth values and simplifying with the identity and idempotent laws, we can gather that one of these cases must be true:
     \begin{gather*}
-        (|x_1| \geq |y_1|) \\
-        (|y_1| \geq |x_1|) \\
         (|x_1| \geq |y_1|) \\
         (|y_1| \geq |x_1|)
     \end{gather*}
@@ -133,6 +129,89 @@ In another sense, $[(a,b)] = \{ (x,y) \in \mathbb{Z} \times \mathbb{Z} | \text{ 
 \FloatBarrier
 
 \section{}
+We can start with the basis and prove that $2^n > n^2 + n$ when $n=5$.
+\begin{align*}
+    2^5 &> 5^2 + 5 \\
+    32 &> 25+5 \\
+    32 &> 30 \\
+    \top
+\end{align*}
+Now we will let $k \geq 5$ and let $2^k > k^2 + k$. We must prove that $2^{k+1} > (k+1)^2 + k + 1$.
+\begin{align*}
+    2^{(k+1)} &= 2 * 2^k & \text{By the exponent product rule}& \\
+    &>2(k^2+k) & \text{By the inductive hypothesis}& \\
+    &>(k+1)^2 +k+1 & \text{I'll prove this.}&
+\end{align*}
+\begin{align*}
+    2(k^2+k) &> (k+1)^2 +k+1 &\text{To be proven}& \\
+    2k(k+1) &> k^2 + 3k + 2 &\text{Expansion}&\\
+    2k(k+1) &> (k+1)(k+2) &\text{Factoring}&\\
+    2k &> k+2 &\text{Dividing by }k+1&\\
+    k-2&>0 &\text{Subtracting }k+2&\\
+    \top & &\ \text{Recall } k\geq 5&
+\end{align*}
+As such,
+\begin{equation*}
+    2^{k+1} > (k+1)^2 +k+1.
+\end{equation*}
+\rightline{$\blacksquare$}
 
+
+
+\section{}
+We will start with the basis where $n=0$:
+\begin{align*}
+    13 & \text{ divides } 2^{12(0)}-1 \\
+    13 & \text{ divides } 0 \\
+    & \top
+\end{align*}
+For ease of communication later, I will also prove a case where $n=1$:
+\begin{align*}
+    13 & \text{ divides } 2^{12(1)}-1 \\
+    13 & \text{ divides } 2^{12}-1 \\
+    13 & \text{ divides } 4095 \\
+    & \top
+\end{align*}
+Now we will let $k \geq 0$ and assume $13 \text{ divides } 2^{12k}-1$. Let us prove $13 \text{ divides } 2^{12(k+1)}-1$. From this, we can gather
+\begin{equation}
+    13 \text{ divides } 2^{12} * 2^{12k} - 1
+\end{equation}
+As per the Zybooks, the inductive hypothesis $13 \text{ divides } 2^{12(k)}-1$ implies, for some integer $x$,
+\begin{align}
+    2^{12k} - 1 &= 13x \\
+    2^{12k} &= 13x + 1.
+\end{align}
+We can plug (3) into (1) to get
+\begin{align*}
+    13 &\text{ divides } 2^{12}(13x + 1) - 1 \\
+    13 &\text{ divides } 2^{12}(13x) + (2^{12} - 1) \tag*{(4)}
+\end{align*}
+To prove this, we must prove that $13 \text{ divides } 13x$ and $13 \text{ divides } 2^{12} - 1$ since, according to the Zybooks, (4) would be a linear combination of multiples of 13. I proved the latter earlier. The former is 13 multiplied by an integer, which means it will be divisible by 13. \rightline{$\blacksquare$}
+
+
+\section{}
+We will prove the basis where $n=0$:
+\begin{align*}
+    \sum_{i=1}^{1}  i*2^i &= 0(2^{0+2}) +2 \\
+    1*2^1 &= 0+2 \\
+    2 &=2 \\
+    &\top
+\end{align*}
+Now we will assume, for $k \geq 0$
+\begin{equation*}
+    \sum_{i=1}^{k+1} i*2^i = k2^{k+2}+2
+\end{equation*}
+and try to prove
+\begin{equation*}
+    \sum_{i=1}^{k+2} i*2^i = (k+1)2^{k+3}+2.
+\end{equation*}
+\begin{align*}
+    \sum_{i=1}^{k+2} i*2^i &= (\sum_{i=1}^{k+1} i*2^i ) + (k+2)2^{k+2} &\text{Separating the final term}&\\
+    &= k2^{k+2}+2 + (k+2)2^{k+2} &\text{Inductive hypothesis}&\\
+    &= (2k+2)2^{k+2} +2 &\text{Factoring}&\\
+    &= 2(k+1)2^{k+2} +2 &\text{Factoring}&\\
+    &= (k+1)2^{k+3} +2 &\text{Product of powers}&
+\end{align*}
+\rightline{$\blacksquare$}
 
 \end{document}
