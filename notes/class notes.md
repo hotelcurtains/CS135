@@ -688,3 +688,88 @@ natural numbers are the minimal set which follow these properties
 - ∀(m,n ∈ N) m ≠ n ⇒ S(m) ≠ S(n)
 - induction axiom where ϕ is some boolean function
 - all sets that have this are indistinguishable from each other since there is only one set that does this
+
+# Division Algorithm
+- x divides y iff x≠0 and y= some integer k times x
+  - i.e. y/x = is a positive integer
+  - if true, y is a **multiple** of x and x is a **divisor**/**factor** of y
+  - also denoted as x∣y.
+    - if x does not divide y then x∤y
+- a **linear combination** of 2 numbers is the sum of multiple of those numbers
+  - x|y and x|z ⇒ x|(sy+tz) for any integers s and t
+- division algorithm:
+  - for integer n and positive integer d, there are some q and r (0≤r≤d-1) such that n = qd + r
+    - q is the quotient
+      - n div d, n//d -- integer division
+    - r is the remainder
+      - n mod d
+      - this is the % operator but worse
+  - when negative, the quotient overshoots into the negatives and the remainder will be positive
+    - e.g. -7 div 4 = -2; -7 mod 4 = 1. -2(4) + 1 = -7
+  - ![division algorithm example](image-18.png)
+  - ![division algorithm example for mixed signs](image-19.png)
+
+# Modular Arithmetic
+- x mod m of an integer m>1 will always result in an element from the set `{0,1,2,...,m-1}`
+- taking for example `{0, 1, 2, 3, 4}`, we can do addition on it then apply x mod 5 to it and always have an answer in that set
+  - like a circular counting system
+- doing addition and applying a mod operation is **addition mod m**
+- multiplying and applying mod is **multiplication mod m**
+- the set `{0,1,2,...,m-1}` with addition and multiplication mod m is called the **ring** 
+  - we can denote the ring **Z**ₘ.
+- precedence: mod happens before addition but after multiplication
+  - 6+2mod7 = 6 + (2 mod 7) = 8
+  - 6\*2mod7 = (6*2) mod 7 = 5
+  - not necessarily the case in programming
+- we can use mod to simplify mod calculations.
+  - (x+y) mod m = ((x mod m) + (y mod m)) mod m
+  - (xy) mod m = ((x mod m)(y mod m)) mod m
+  - (xʸ) mod m = (x mod m)ʸ mod m
+## Congruence mod m
+- let x, y, m be integers and m>1. x is congruent to y mod m iff `x mod m` = `y mod m`.
+- x and y are not necessarily equal, but they are the same distance away from the closest multiple of m.
+- this can be denoted as x ≡ y(mod m)
+- x ≡ y(mod m) ⇔ m∣(x-y)
+- it's probably easier to check that (x-y)/m is an integer than any of that mod shit
+
+# Prime factorizations
+- **prime factorization**: every integer > 1 can be expressed as a product of primes 
+- the fact that every number only has one prime factorization is the **fundamental theorem of arithmetic**
+  - only true if we're only counting non-decreasing prime factorizations, since you can list the multiplication in any order otherwise.
+  - we are ignoring 1 as a factor entirely
+- a **non-decreasing sequence** is pretty self-explanatory.
+  - each number must be ≥ its predecessor
+  - e.g. 1, 1, 2, 3
+- **multiplicity**: how many times a given number appears in the prime factorization of some number.
+  - for ease we will write PF's with exponents, so the multiplicity will be that number's power.
+  - e.g. 612 = 2² \* 3² \* 17
+    - 2's multiplicity is 2; 3's is 2; 17's is 1
+- greatest common divisor and least common multiple are back
+  - gcd of some x and 0 = |x| because every number is a factor of 0.
+  - absolute value to cover for when x is negative because |x| ≥ x
+  - gcd of 0 and 0 is undefined because it can be any integer.
+- **relative primes** have GCD = 1
+  - their prime factorizations have no factors in common
+- ![example of computing lcm. take the max of the exponents](image-20.png)
+- GCM is the same except we take the min
+
+# Factoring and primality
+- it is difficult to test whether comically large numbers are prime because there are too many possible factors to run though
+- brute force primality testing:
+  - check whether x divides N for every 1 < x ≤ N-1
+- we can improve this by only testing up to floor(sqrt(N))
+  - check whether x divides N for every 1 < x ≤ floor(sqrt(N))
+  - this still requires checking floor(sqrt(N)) numbers though, which gives it O(sqrt(N)), which is still not very good
+- the prime number theorem
+  - π(x) is the amount of primes between 2 and x, both inclusive.
+  - limit(x→∞) π(x)/(x/ln(x)) = 1
+  - ![prime number theorem](image-21.png)
+  - explains how dense prime numbers are among the integers
+  - gives the density of primes in the set of integers up to and including x
+  - if a random number is selected from the range 2 through x, then the likelihood that the selected number is prime is roughly 1/ln(x)
+- we can find a prime digit with n digits more quickly.
+  - chose a random number with n digits.
+  - check if it is prime.
+  - if yes break, else restart.
+  - using the prime number theorem, we know the likelihood of each choice being prime is 1/lnx.
+  - the amount of trials is proportional to n, the amount of digits, which is much better than 10ⁿ, the value of the number we end up with.
