@@ -677,6 +677,7 @@ strategy:
 - inductive step: 
   - assume that for all k≥1, the statement holds for all P(1), P(2), P(3), ..., P(k)
   - then prove P(k+1)
+- assuming the inductive hypothesis is true, we can also assume P(k-1) is also true
 
 # Axioms for natural numbers
 natural numbers are the minimal set which follow these properties
@@ -725,6 +726,7 @@ natural numbers are the minimal set which follow these properties
   - (x+y) mod m = ((x mod m) + (y mod m)) mod m
   - (xy) mod m = ((x mod m)(y mod m)) mod m
   - (xʸ) mod m = (x mod m)ʸ mod m
+- Euclid's algorithm: let r = a mod b. now r mod b = a mod b
 ## Congruence mod m
 - let x, y, m be integers and m>1. x is congruent to y mod m iff `x mod m` = `y mod m`.
 - x and y are not necessarily equal, but they are the same distance away from the closest multiple of m.
