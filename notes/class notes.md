@@ -678,6 +678,22 @@ strategy:
   - assume that for all k≥1, the statement holds for all P(1), P(2), P(3), ..., P(k)
   - then prove P(k+1)
 - assuming the inductive hypothesis is true, we can also assume P(k-1) is also true
+- 
+## Induction for a recursive formula
+[from this video](https://www.youtube.com/watch?v=iqpeZXAqFrw). shoutout this guy for teaching like he wants his students to actually learn.
+- take for example Tₙ = Tₙ₋₁ + 2n where T₁ = 2. we want to prove that (1) Tₙ = n²+n
+- We'll test that (1) is true
+  - we can use the recursive formula for T₂ = T₁ + 2(2) = 6
+  - we can also use (1) to show T₂ = 2²+2 = 6
+  - therefore both ways fo finding T₂ are equivalent
+- we'll assume for all k>1 (since T₁ is spoken for) that Tₖ = k²+k
+- now we'll prove that Tₖ₊₁ = (k+1)² + k + 1
+  - = k² + 2k + 1 + k + 1 = k² + 3k + 2
+  - so we'll prove Tₖ₊₁ = k² + 3k + 2 bc it's the same thing
+  - from recursive formula: Tₖ₊₁ = Tₖ₊₁₋₁ + 2(k+1)
+  - = k² + k + 2k + 2 by assumption
+  - = k² + 3k + 2 = Tₖ₊₁, QED
+
 
 # Axioms for natural numbers
 natural numbers are the minimal set which follow these properties

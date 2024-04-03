@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathbbol}
+\usepackage{mathtools}
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage{chngcntr}
+\usepackage{amssymb}
+\usepackage[verbose]{placeins}
+\counterwithin*{equation}{section}
+\counterwithin*{equation}{subsection}
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\title{Written Assignment 7}
+\author{Daniel Detore\\CS135 B/LF}
+\date{April 4, 2024}
+
+\begin{document}
+\maketitle
+\raggedright
+
+\section{}
+\subsection{}
+\begin{align*}
+    T(1) &= 2T(\floor{\frac{1}{4}}) + \sqrt{1} \\
+         &= 2T(0) + 1 \\
+         &= 2(1) + 1 \\
+    T(1) &= 3
+\end{align*}
+\begin{align*}
+    T(2) &= 2T(\floor{\frac{2}{4}}) + \sqrt{2} \\
+         &= 2T(0) + \sqrt{2} \\
+    T(2) &= 2 + \sqrt{2}\\
+         &\approx 3.41421
+\end{align*}
+
+\subsection{}
+We need to prove that $T(n) \leq 3\sqrt{n}\log_2 n$ for all $n\geq 2$.\\
+Let's check this premise for basis $n=2$:
+\begin{align*}
+    T(2) &\leq 3\sqrt{2}\log_2(2) \\
+    2 + \sqrt{2} &\leq 3\sqrt{2} \\
+    2 &\leq 2\sqrt{2} \\
+    1 &\leq \sqrt{2} \\
+    &\top
+\end{align*}
+Note the use of (a) in the second equation.\\
+Inductive hypothesis: Let $k$ be an integer $\geq 2$. We'll assume that $T(i) \leq 3\sqrt{i}\log_2 i$ for all $2 \leq i\leq k, i\in \mathbb{Z}$.\\
+Now we must prove that
+\begin{equation*}
+    T(k+1) \leq 3\sqrt{k+1}\log_2(k+1).
+\end{equation*}
+\begin{align*}
+    T(k+1) &= 2T(\floor*{\frac{k+1}{4}}) + \sqrt{k+1} & \text{By definition of $T$}\\
+           &\leq 2(3\sqrt{\floor*{\frac{k+1}{4}}}\log_2\floor*{\frac{k+1}{4}}) + \sqrt{k+1} & \text{By the inductive hypothesis} \\
+           &\leq 2(3\sqrt{\frac{k+1}{4}}\log_2(\frac{k+1}{4})) + \sqrt{k+1} & \floor{x} \leq x \\
+           &= 2(\frac{3}{2}\sqrt{k+1}\log_2(\frac{k+1}{4})) + \sqrt{k+1} & \text{By algebra} \\
+           &= 3\sqrt{k+1}\log_2(\frac{k+1}{4}) + \sqrt{k+1} \\
+           &= 3\sqrt{k+1}(\log_2(k+1) - \log_2(4)) + \sqrt{k+1} \\
+           &= 3\sqrt{k+1}(\log_2(k+1) - 2) + \sqrt{k+1} \\
+           &= 3\sqrt{k+1}\log_2(k+1) - 6\sqrt{k+1} + \sqrt{k+1} \\
+           &= 3\sqrt{k+1}\log_2(k+1) - 5\sqrt{k+1} \\
+           &< 3\sqrt{k+1}\log_2(k+1)                                    &\blacksquare
+\end{align*}
+
+
+\end{document}
