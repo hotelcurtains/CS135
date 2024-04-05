@@ -614,6 +614,7 @@ for valid propositions p and q, these are valid propositions
 
 
 ## Types of Walks
+- this sin't in the class yet i did the wrong zybooks
 - we can walk through the graph like this ![alt text](image-13.png)
   - an **open walk** has different first and last vertices
   - a **closed walk** has the same first and last vertex
@@ -678,7 +679,8 @@ strategy:
   - assume that for all k≥1, the statement holds for all P(1), P(2), P(3), ..., P(k)
   - then prove P(k+1)
 - assuming the inductive hypothesis is true, we can also assume P(k-1) is also true
-- 
+this relies on the well-ordering principle - that every non-empty set of non-negative integers has a smallest element.
+
 ## Induction for a recursive formula
 [from this video](https://www.youtube.com/watch?v=iqpeZXAqFrw). shoutout this guy for teaching like he wants his students to actually learn.
 - take for example Tₙ = Tₙ₋₁ + 2n where T₁ = 2. we want to prove that (1) Tₙ = n²+n
@@ -693,7 +695,6 @@ strategy:
   - from recursive formula: Tₖ₊₁ = Tₖ₊₁₋₁ + 2(k+1)
   - = k² + k + 2k + 2 by assumption
   - = k² + 3k + 2 = Tₖ₊₁, QED
-
 
 # Axioms for natural numbers
 natural numbers are the minimal set which follow these properties
@@ -791,3 +792,49 @@ natural numbers are the minimal set which follow these properties
   - if yes break, else restart.
   - using the prime number theorem, we know the likelihood of each choice being prime is 1/lnx.
   - the amount of trials is proportional to n, the amount of digits, which is much better than 10ⁿ, the value of the number we end up with.
+
+# Loop invariants / program correctness
+- this sin't in the class yet i did the wrong zybooks
+- program verification proves that programs do what they're supposed to do
+  - we are verifying that when the precondition is a certain way the post-condition should also be a certain way
+- we can break a program down into smaller pieces
+  - like one per command
+  - and check the precondition and post-condition for each of them
+- the *loop condition* is the conditional statement letting a while loop run
+  - we can also call it the ***loop invariant***
+  - because, as long as the program is running that loop, that statement will be true
+- steps of proving all parts of a loop invariant: 
+![alt text](image-22.png)
+
+# GCD and Euclid's Theorem
+- GCD Theorem: for positive integers x, y, gcd(x,y) = gcd(y mod x, x)
+- Euclid's algorithm:
+![Euclid's algorithm as a program](image-23.png)
+- Extended Euclidean Theorem: gcd(x,y) = sx + ty
+  - i.e. gcd(x,y) will be a linear combination of x and y
+- The multiplicative inverse mod n, which we might call inverse mod n, is some integer s such that sx mod n = 1
+  - not every mod has this
+  - if a is a multiplicative inverse of x, then x is a multiplicative inverse of a
+  - e.g. 3 is an inverse of 7 mod 10 because (3\*7) mod 10 = 1
+  - e.g. (7\*5) mod 17 = 1 therefore 7 is an inverse of 5 mod 17 and 7 is an inverse of 5 mod 17
+- a number's coefficient in eEuclid's extended algorithm is its multiplicative inverse mod the other number.
+  - e.g. for sx + ty, 
+    - s is an inverse of x mod y
+    - t is an inverse of y mod x
+
+# Fast exponentiation
+- finding powers by repeated multiplication is slow
+- we can take a shortcut by repeated squaring
+- ![fast exponentiation strategy](image-24.png)
+  - note that e.g. 7⁸ breaks down into ((7^2)^2)^2
+- try for example 4¹⁴ mod 6
+![4^14 mod 6 using fast exponentiation](image-25.png)
+- or:
+```
+find 3^7 mod 6
+7 = (111)2S ==> 7 = 2^2 + 2^1 + 2^0
+3^7 = 3^2^2 * 3^2^1 * 3^2^0
+3^7 mod 6 = 3^2^2 mod 6 * 3^2^1 mod 6 * 3^2^0 mod 6
+= 3^4 mod 6 * 3^2 mod 6 * 3 mod 6
+= 3*3*3 mod 6 = 3^3 mod 6 = 3 mod 6 = 3
+```
