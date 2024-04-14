@@ -838,3 +838,17 @@ find 3^7 mod 6
 = 3^4 mod 6 * 3^2 mod 6 * 3 mod 6
 = 3*3*3 mod 6 = 3^3 mod 6 = 3 mod 6 = 3
 ```
+
+# Introduction to cryptography
+- plaintext - unencrypted message
+- ciphertext - encrypted message
+- for secret key k, some integer N, converted plaintext m, and ciphertext c:
+  - we can make a simple encryption algorithm c = (m+k) mod N
+  - and decrypt it with m = (c-k) mod N
+  - this isn't great but it's definitely a cipher
+- no two distinct plaintexts can share the same ciphertext
+- the decryption scheme must bt the inverse of the encryption scheme
+
+# RSA Encryption System
+   message -> integer by az126
+   

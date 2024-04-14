@@ -14,5 +14,6 @@ class faster{
     
     public static void main(String[] args) {
         System.out.println(emod(10, new BigInteger("600000000000000000000000000000000000000002"), 13));
+        System.out.println(emod(17, new BigInteger("80000000000000000000000000000000001"), 100));
     }
 }
