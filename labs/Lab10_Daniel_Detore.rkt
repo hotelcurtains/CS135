@@ -66,8 +66,14 @@
 ;;
 ;; Type Signature: (euclid-gcd int int) -> int
 (define (euclid-gcd a b)
-"Your code comes here"
+(let ((x (max a b)) (y (min a b)))
+  (cond 
+    ((<= b 0) `0)
+    ((equal? 0 (modulo x y)) y)
+    (else (euclid-gcd y (modulo x y)))
   )
+)
+)
 
 ;; Now you technically have two functions which compute gcd,
 ;;   but one is more efficient than the other.
@@ -104,8 +110,12 @@
 ;; Type Signature: (CRT-exists? cong-sys) -> boolean
 
 (define (CRT-exists? cong-sys)
-"Your code comes here"
-  )
+  (empty? (filter not-coprime? (subsets 2 (map cadr cong-sys))))
+)
+
+(define (not-coprime? pair)
+  (not (equal? (euclid-gcd (car pair) (cadr pair)) 1))
+)
 
 ;;-------------------------------------------------------------------------------
 ;;                               CRT FUNCTIONS
@@ -130,7 +140,12 @@
 
 ;; Type Signature: (mul-inv int int) -> int
 (define (mult-inv a b)
-"Your code comes here"
+  (let ((x (cadr (pulverize a b))))
+    (if (> x 0)
+      x
+      (+ x b)
+    )
+  )
 )
 
 ;; Implement "m", which accepts a system of linear congruences
@@ -145,8 +160,8 @@
 ;;
 ;; Type Signature: (m crt-list) -> int
 (define (m crt-list)
-"Your code comes here"
-  )
+  (apply * (map cadr crt-list))
+)
 
 ;; Implement CRT-helper, which accepts a valid cong-sys (one where CRT exists)
 ;;   and m (the product of all the moduli),
@@ -164,9 +179,11 @@
 ;;
 ;; Type Signature: (CRT-helper cong-sys int) -> int
 (define (CRT-helper cong-sys m)
-"Your code comes here"
-
-       )
+  (if (empty? cong-sys) 
+    0
+    (+ (* (caar cong-sys) (/ m (cadar cong-sys)) (mult-inv (/ m (cadar cong-sys)) (cadar cong-sys))) (CRT-helper (cdr cong-sys) m))
+  )
+)
 
 ;; Now we'll bring everything together and write the function
 ;;   to calculate CRT from start to finish.
@@ -186,8 +203,13 @@
 ;;
 ;; Type Signature: (CRT cong-sys) -> int
 (define (CRT cong-sys)
-"Your code comes here"
+ (let ((m (m cong-sys)))
+  (if (CRT-exists? cong-sys) 
+    (modulo (CRT-helper cong-sys m) m)
+    -1
   )
+ )
+)
 
 
 ;--------------------------- HELPER FUNCTIONS: DO NOT MODIFY ----------------------------;

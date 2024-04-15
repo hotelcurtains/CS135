@@ -9,7 +9,6 @@
 # Scheme / DrRacket
 - DrRacket seems to work like IDLE
 - everything is either an atom or a list
-- he uses language Pretty Big, idk what difference it makes
 ## Atoms (primitive data types)
 - integers
 - real numbers (0.73, 3.17E+10)
