@@ -562,16 +562,6 @@ for valid propositions p and q, these are valid propositions
 - instead of (x,y) ∈ R, we write x R y.
 - you can draw arrow diagrams or tables to show all possible pairs
 
-## Directed Graphs
-- when the domain and co-domain are the same you can make a directed graph (digraph)
-  - a directed graph G is a pair (V,E) where V is a set of vertices and E is a set of ordered pairs (u,v) ∈ V×V called the directed edges.
-- like an arrow diagram but it's just one set of points
-- pairs like (1,1) will show as the vertex 1 pointing to itself
-- ![directed graph for a relation](image-5.png)
-- **in-degree** of a vertex is the amount of arrows pointing toward it, **out-degree** is the amount pointing away
-- of uRv, u is the **head** and v is the **tail**
-- if a is the head and tail of an arrow, that arrow is called a **self-loop**
-
 ## Types of Relations
 - a relation R on a set A is **reflexive** if (a,a) ∈ R for all a ∈ A.
   - i.e. it includes all possible self-loops
@@ -844,8 +834,22 @@ find 3^7 mod 6
   - e is any set of pairs of objects in V
     - we interpret this as an edge that connects them
 - the set of edges is a subset of the power set of V
-## Recall directed graphs
-- you need a set of vertices and a set of pairs of vertices that make up the edges
+- a regular graph has vertices that all have the same degree
+- total degree of a graph is the sum of the degrees of all its vertices
+- two vertices are connected if there is some path from one to the other
+- a connected component is the largest possible set of connected vertices
+  - a set can have multiple discontinuous components
+- a graph is connected if there is an edge between all of its vertices
+  - otherwise it is disconnected
+## Directed Graphs
+- when the domain and co-domain are the same you can make a directed graph (digraph)
+  - a directed graph G is a pair (V,E) where V is a set of vertices and E is a set of ordered pairs (u,v) ∈ V×V called the directed edges.
+- like an arrow diagram but it's just one set of points
+- pairs like (1,1) will show as the vertex 1 pointing to itself
+- ![directed graph for a relation](image-5.png)
+- **in-degree** of a vertex is the amount of arrows pointing toward it, **out-degree** is the amount pointing away
+- of uRv, u is the **head** and v is the **tail**
+- if a is the head and tail of an arrow, that arrow is called a **self-loop**
 - might be useful for precedence graphs
   - mapping out all the classes you need to take and connecting from prerequisites to the next class
 ## Undirected Graphs
@@ -858,6 +862,33 @@ find 3^7 mod 6
 - we are only doing simple graphs, where two vertices have at most one edge connecting them
 - The Handshaking Theorem: deg(v₁)+...+deg(vₙ) = 2|E|
   - by counting the degree of all vertices, you are double counting every single edge ⇒ 2|E|
+- a undirected graph G is k-**vertex**-connected for some k if
+  - G already contains k+1 vertices
+  - you can remove any k-1 vertices and it is still connected
+    - removing k vertices disconnects the graph
+  - vertex connectivity κ(G) is the largest k for which the graph is still connected
+  - κ(Kₙ) = n-1
+  - κ(Cₙ) = 2
+- a undirected graph G is k-**edge**-connected for some k if
+  - G already contains k+1 edges
+  - you can remove any k-1 edges and it is still connected
+    - removing k edges disconnects the graph
+  - edge connectivity λ(G) is the largest k for which the graph is still connected
+- the minimum degree of any vertex in G = δ(G)
+  - κ(G) ≤ δ(G)
+  - λ(G) ≤ δ(G)
+
+## Special Graphs
+![special graphs](image-27.png)
+- Kₙ is a complete graph (or n-clique) with n vertices. a complete graph contains all possible pair between all vertices
+- Cₙ is a cycle on n vertices. 
+  - all the vertices are connected in a circle. 
+  - it looks like a polygon with n sides.
+- Qₙ is a hypercube in the nth dimension.
+  - has 2ⁿ vertices
+  - each vertex is named by a n-bit string and are connected if their names are different by exactly one bit.
+    - these are usually binary strings
+- K_(n,m) has n+m vertices, split into groups of n and m where all connections are made between each vertex of group n and group m but none between vertices in the same group. 
 
 ## Walks
 - generally path ≡ a walk
