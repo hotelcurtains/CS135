@@ -611,26 +611,6 @@ for valid propositions p and q, these are valid propositions
 - partitions are isolated sections of an equivalence relation.
 ![partitions](image-17.png)
 
-
-## Types of Walks
-- this sin't in the class yet i did the wrong zybooks
-- we can walk through the graph like this ![alt text](image-13.png)
-  - an **open walk** has different first and last vertices
-  - a **closed walk** has the same first and last vertex
-  - a walk from a to b to c is denoted like ⟨a, b, c⟩ which requires that (a,b) and (b,c) ∈ R
-  - length is the amount of pairs that make it up, including duplicates
-  - a walk with 0 length like ⟨a⟩ is valid
-  - a walk ⟨a, a⟩ is valid and closed, assuming (a,a) exists
-- A **trail** is a walk in which no *edge* occurs more than once.
-- A **path** is a walk in which no *vertex* occurs more than once.
-- trail vs path
-  - ![trail vs path](image-14.png)
-- A **circuit** is a closed trail.
-  - all entries are unique, and first and last are the same
-- A **cycle** is a circuit of length ≥1 in which no vertex occurs more than once, except the first and last vertices which are the same.
-- cycle vs circuit
-  - ![cycle vs circuit](image-15.png)
-
 # Induction
 principle of mathematical induction:
 ```
@@ -846,8 +826,63 @@ find 3^7 mod 6
   - and decrypt it with m = (c-k) mod N
   - this isn't great but it's definitely a cipher
 - no two distinct plaintexts can share the same ciphertext
-- the decryption scheme must bt the inverse of the encryption scheme
+- the decryption scheme must be the inverse of the encryption scheme
+## lab 12
+- ϕ(n) = the amount of numbers less than n with which n is relatively coprime
+- for n = the product of prime numbers p and q, ϕ(n) = ϕ(pq) = (p-1)(q-1) (lab) 
+## RSA Cryptosystem
+![Preparation of public and private keys in RSA](image-26.png)
+- given public key (e, N)
+- (ciphertext c) = (plaintext m)ᵉ mod N
+- m = cᵈ mod N
+  - where d is a private key only Bob has
 
-# RSA Encryption System
-   message -> integer by az126
-   
+
+# Graphs
+- graph G = (V, E)
+  - v is any set of objects
+  - e is any set of pairs of objects in V
+    - we interpret this as an edge that connects them
+- the set of edges is a subset of the power set of V
+## Recall directed graphs
+- you need a set of vertices and a set of pairs of vertices that make up the edges
+- might be useful for precedence graphs
+  - mapping out all the classes you need to take and connecting from prerequisites to the next class
+## Undirected Graphs
+- An undirected graph has directionless edges
+- two vertices u, v are adjacent/neighbors if the pair (u,v) ∈ E
+- edge (u, v) is incident with the vertices u and v.
+- the degree of v = deg(v) = the amount of edges touching v
+- the set of the vertices adjacent to v make up v's neighborhood N(v).
+- |E| = the amount of edges
+- we are only doing simple graphs, where two vertices have at most one edge connecting them
+- The Handshaking Theorem: deg(v₁)+...+deg(vₙ) = 2|E|
+  - by counting the degree of all vertices, you are double counting every single edge ⇒ 2|E|
+
+## Walks
+- generally path ≡ a walk
+- we will denote a path as a sequence of edges (e₁,...,eₙ) such that the next edge starts at the end of the previous one
+- zybooks denotes it as a sequence of vertices where any two consecutive vertices form an edge
+- A **trail** is a walk in which no *edge* occurs more than once.
+- A **simple path** is a walk in which no *vertex* occurs more than once.
+- a single vertex is a path with 0 steps/length
+- for undirected graph G and two of its vertices u and v, uRv ⇒ u is connected with V by any path in G
+  - does not need to be one edge, it can be any path
+- a **complete graph** contains all possible connection between vertices
+  - all equivalence classes are the same
+- a subset C of graph G is a connected component if every 2 vertices of C are connected by a path in G AND there is no larger set C` that has that property
+- we can walk through the graph like this ![alt text](image-13.png)
+  - an **open walk** has different first and last vertices
+  - a **closed walk** has the same first and last vertex
+  - a walk from a to b to c is denoted like ⟨a, b, c⟩ which requires that (a,b) and (b,c) ∈ R
+  - length is the amount of pairs that make it up, including duplicates
+  - a walk with 0 length like ⟨a⟩ is valid
+  - a walk ⟨a, a⟩ is valid and closed, assuming (a,a) exists
+- A **circuit** is a closed trail.
+  - all moves are unique, and first and last are the same
+- A **cycle** is a circuit of length ≥1 in which no vertex occurs more than once, except the first and last vertices which are the same.
+- cycle vs circuit
+  - ![cycle vs circuit](image-15.png)
+
+## Undirected Multigraphs
+- a pair G = (V, E) where V is any objects and E is a set of pairs of or single elements of V
