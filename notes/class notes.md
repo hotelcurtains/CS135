@@ -860,8 +860,11 @@ find 3^7 mod 6
 - the set of the vertices adjacent to v make up v's neighborhood N(v).
 - |E| = the amount of edges
 - we are only doing simple graphs, where two vertices have at most one edge connecting them
+  - no doubled edges and no edges connecting a vertex to itself
 - The Handshaking Theorem: deg(v₁)+...+deg(vₙ) = 2|E|
   - by counting the degree of all vertices, you are double counting every single edge ⇒ 2|E|
+- a degree sequence is a list of the degrees of all vertices in a graph
+  - for Kₙ, it will be n elements long and all entries will be n-1.
 - a undirected graph G is k-**vertex**-connected for some k if
   - G already contains k+1 vertices
   - you can remove any k-1 vertices and it is still connected
@@ -877,6 +880,9 @@ find 3^7 mod 6
 - the minimum degree of any vertex in G = δ(G)
   - κ(G) ≤ δ(G)
   - λ(G) ≤ δ(G)
+- a simple connected graph with no cycles is a tree
+  - i.e. if for all vertices there is one unique path connecting them
+  - for n nodes a tree has n-1 edges
 
 ## Special Graphs
 ![special graphs](image-27.png)
@@ -917,3 +923,7 @@ find 3^7 mod 6
 
 ## Undirected Multigraphs
 - a pair G = (V, E) where V is any objects and E is a set of pairs of or single elements of V
+
+## Trees
+- a tree with n vertices has n-1 edges
+- a full m-ary tree with height h has mʰ vertices
