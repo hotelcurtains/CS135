@@ -712,13 +712,14 @@ natural numbers are the minimal set which follow these properties
   - (x+y) mod m = ((x mod m) + (y mod m)) mod m
   - (xy) mod m = ((x mod m)(y mod m)) mod m
   - (xʸ) mod m = (x mod m)ʸ mod m
-- Euclid's algorithm: let r = a mod b. now r mod b = a mod b
 ## Congruence mod m
 - let x, y, m be integers and m>1. x is congruent to y mod m iff `x mod m` = `y mod m`.
 - x and y are not necessarily equal, but they are the same distance away from the closest multiple of m.
 - this can be denoted as x ≡ y(mod m)
 - x ≡ y(mod m) ⇔ m∣(x-y)
 - it's probably easier to check that (x-y)/m is an integer than any of that mod shit
+## Extended Euclidian Algorithm
+![extended euclidean algorithm](IMG_4485.jpg) 
 
 # Prime factorizations
 - **prime factorization**: every integer > 1 can be expressed as a product of primes 
@@ -821,11 +822,20 @@ find 3^7 mod 6
 - ϕ(n) = the amount of numbers less than n with which n is relatively coprime
 - for n = the product of prime numbers p and q, ϕ(n) = ϕ(pq) = (p-1)(q-1) (lab) 
 ## RSA Cryptosystem
-![Preparation of public and private keys in RSA](image-26.png)
-- given public key (e, N)
 - (ciphertext c) = (plaintext m)ᵉ mod N
 - m = cᵈ mod N
   - where d is a private key only Bob has
+![Preparation of public and private keys in RSA](image-26.png)
+- given public key (e, N)
+  - N is the RSA modulus
+    - its only factors are p and q
+    - N must be > ciphertext c
+  - e is some prime 2 < e < N where e and Φ are coprime (gcd(e,Φ) = 1)
+    - Φ is actually Φ(N) = (p-1)(q-1)
+- to find private key d
+  - d = multiplicative inverse of e mod Φ
+    - ⇒ ed mod Φ = 1
+
 
 
 # Graphs
@@ -925,5 +935,16 @@ find 3^7 mod 6
 - a pair G = (V, E) where V is any objects and E is a set of pairs of or single elements of V
 
 ## Trees
+- a tree is an undirected connected graph with no cycles
+- each vertex has a level (distance from the root)
+- the height is is highest level of any vertex in the graph
+- most of this kinda stuff in in the cs 284 notes
+- you can turn a free tree in to a rooted tree by  designating a root and making it look organized
+- variable length codes: find a letter by moving through a tree until you reach a leaf, then returning to the root and repeating
+- Any free tree with at least two vertices has at least two leaves.
+- Pₙ in a path of n vertices, just a straight line
+- Sₙ is a star with n points and n+1 vertices with all point vertices connected only to the central one
 - a tree with n vertices has n-1 edges
 - a full m-ary tree with height h has mʰ vertices
+- a forest is a graph with no cycles (it need not be connected)
+  - for a forest with n vertices and c connected components (individual trees), its number of edges = n-c
