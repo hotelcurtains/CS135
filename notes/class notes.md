@@ -718,8 +718,6 @@ natural numbers are the minimal set which follow these properties
 - this can be denoted as x ≡ y(mod m)
 - x ≡ y(mod m) ⇔ m∣(x-y)
 - it's probably easier to check that (x-y)/m is an integer than any of that mod shit
-## Extended Euclidian Algorithm
-![extended euclidean algorithm](IMG_4485.jpg) 
 
 # Prime factorizations
 - **prime factorization**: every integer > 1 can be expressed as a product of primes 
@@ -791,6 +789,8 @@ natural numbers are the minimal set which follow these properties
   - e.g. for sx + ty, 
     - s is an inverse of x mod y
     - t is an inverse of y mod x
+## Extended Euclidean Algorithm
+![extended euclidean algorithm](IMG_4485.jpg) 
 
 # Fast exponentiation
 - finding powers by repeated multiplication is slow
@@ -828,15 +828,13 @@ find 3^7 mod 6
 ![Preparation of public and private keys in RSA](image-26.png)
 - given public key (e, N)
   - N is the RSA modulus
-    - its only factors are p and q
+    - its only nontrivial factors are p and q
     - N must be > ciphertext c
   - e is some prime 2 < e < N where e and Φ are coprime (gcd(e,Φ) = 1)
     - Φ is actually Φ(N) = (p-1)(q-1)
 - to find private key d
   - d = multiplicative inverse of e mod Φ
     - ⇒ ed mod Φ = 1
-
-
 
 # Graphs
 - graph G = (V, E)
