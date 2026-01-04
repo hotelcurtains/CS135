@@ -1,2 +1,2 @@
-# CS135
- 2024S with Jacek Ossowski
+# CS 135
+CS 135 - Discrete Structures with Professor Jacek Ossowski in Spring 2024
